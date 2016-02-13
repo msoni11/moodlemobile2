@@ -4,14 +4,16 @@
   </ion-nav-buttons>
   <ion-content>
       <div class="list">
-        <div class="item item-text-wrap">{{ 'mm.login.newsitedescription' | translate }}</div>
+        <div class="item item-text-wrap">{{ 'mm.login.helpmelogin' | translate }}</div>
         <form>
           <label class="item item-input item-stacked-label">
-            <span class="input-label">{{ 'mm.login.siteaddress' | translate }}</span>
-            <input type="url" placeholder="Enter INDEPTH site URL" ng-model="siteurl" mm-no-input-validation ng-change="validate(siteurl)" mm-auto-focus >
+            <span class="input-label">{{ 'mm.login.login' | translate }}</span>
+            <input type="url" placeholder="Username"  mm-no-input-validation>
+            <span class="input-label">{{ 'mm.login.password' | translate }}</span>
+            <input type="url" placeholder="Password"  mm-no-input-validation >
           </label>
           <div class="item">
-              <button class="button button-block" ng-click="connect(siteurl)" ng-disabled="isInvalidUrl">{{ 'mm.login.connect' | translate }}</button>
+              <button class="button button-block" ng-disabled="true">{{ 'mm.login.connect' | translate }}</button>
               <!-- <input type="submit" class="button button-block" value="{{ 'mm.login.connect' | translate }}" > -->
           </div>
         </form>
