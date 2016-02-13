@@ -10,7 +10,7 @@
     "errordeletesite": "An error occurred while deleting this site. Please try again.",
     "errorupdatesite": "An error ocurred while updating the site's token.",
     "help": "Help",
-    "helpmelogin": "<p>Please use your ostadelahi credentials to login to app.</p>",
+    "helpmelogin": "Please use your ostadelahi credentials to login to app",
     "invalidaccount": "Please check your login details or ask your site administrator to check the site configuration.",
     "invalidmoodleversion": "Something is wrong ",
     "invalidsite": "The site URL is invalid.",
