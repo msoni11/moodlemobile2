@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns = "http://www.w3.org/ns/widgets" xmlns:gap = "http://phonegap.com/ns/1.0" xmlns:android = "http://schemas.android.com/apk/res/android" id = "com.moodle.moodlemobile"  versionCode = "2009" version = "2.8">
-    <name>Indepth</name>
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        xmlns:android = "http://schemas.android.com/apk/res/android"
+        id        = "com.moodle.moodlemobile"
+        versionCode = "2009"
+        version   = "2.8">
+    <name>Moodle Mobile</name>
 
     <description>
-        Indepth official app
+        Moodle Mobile official app
     </description>
 
-    <author href="http://ostadelahi-indepth.com" email="mmahendra.soni@gmail.com">
-        Ostadelahi Indepth
+    <author href="http://moodle.com" email="mobile@moodle.com">
+        Moodle Pty Ltd
     </author>
 
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
@@ -522,4 +527,3 @@
     </gap:config-file>
 
 </widget>
-Status  
