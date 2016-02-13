@@ -7,7 +7,7 @@
     "languages": {"en": "English", "fa": "فارسی", "fr" : "Français", "it": "Italiano"},
     "wsservice" : "moodle_mobile_app",
     "wsextservice" : "local_mobile",
-    "demo_sites":{},
+    "demo_sites":"",
     "siteurl": "http://school.demo.moodle.net",
     "gcmpn": "694767596569"
 }
