@@ -4,6 +4,9 @@
     "filter": "Filter",
     "frontpage": "Ingångssidan",
     "mycourses": "Mina kurser",
+    "nocourses": "Det finns ingen kursinformation att visa.",
+    "nosearchresults": "Din sökning gav inga träffar",
+    "notenroled": "Du är inte registrerad i den här kursen",
     "password": "Lösenord",
     "search": "Sök",
     "searchcourses": "Sök kurser"
