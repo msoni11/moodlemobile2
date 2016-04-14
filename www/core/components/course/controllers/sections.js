@@ -47,37 +47,30 @@ angular.module('mm.core.course')
             $scope.fullname = course.fullname;
             // Get the sections.
             return $mmCourse.getSections(courseId).then(function(sections) {
-                // Add a fake first section (all sections).
-                return $translate('mm.course.allsections').then(function(str) {
-                    // Adding fake first section.
-                    var result = [{
-                        name: str,
-                        id: mmCoreCourseAllSectionsId
-                    }].concat(sections);
+                var result = sections;
 
-                    $scope.sections = result;
+                $scope.sections = result;
 
-                    if (downloadSectionsEnabled) {
-                        // Calculate status of the sections.
-                        return $mmCourseHelper.calculateSectionsStatus(result, courseId, true, refresh).catch(function() {
-                            // Ignore errors (shouldn't happen).
-                        }).then(function(downloadpromises) {
-                            // If we restored any download we'll recalculate the status once all of them have finished.
-                            if (downloadpromises && downloadpromises.length) {
-                                $mmUtil.allPromises(downloadpromises).catch(function() {
-                                    if (!$scope.$$destroyed) {
-                                        $mmUtil.showErrorModal('mm.course.errordownloadingsection', true);
-                                    }
-                                }).finally(function() {
-                                    if (!$scope.$$destroyed) {
-                                        // Recalculate the status.
-                                        $mmCourseHelper.calculateSectionsStatus($scope.sections, courseId, false);
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
+                if (downloadSectionsEnabled) {
+                    // Calculate status of the sections.
+                    return $mmCourseHelper.calculateSectionsStatus(result, courseId, true, refresh).catch(function() {
+                        // Ignore errors (shouldn't happen).
+                    }).then(function(downloadpromises) {
+                        // If we restored any download we'll recalculate the status once all of them have finished.
+                        if (downloadpromises && downloadpromises.length) {
+                            $mmUtil.allPromises(downloadpromises).catch(function() {
+                                if (!$scope.$$destroyed) {
+                                    $mmUtil.showErrorModal('mm.course.errordownloadingsection', true);
+                                }
+                            }).finally(function() {
+                                if (!$scope.$$destroyed) {
+                                    // Recalculate the status.
+                                    $mmCourseHelper.calculateSectionsStatus($scope.sections, courseId, false);
+                                }
+                            });
+                        }
+                    });
+                }
             });
         }).catch(function(error) {
             if (error) {
