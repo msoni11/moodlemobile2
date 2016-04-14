@@ -33,7 +33,7 @@ angular.module('mm.core.course')
  * @ngdoc service
  * @name $mmCourse
  */
-.factory('$mmCourse', function($mmSite, $translate, $q, $log, $mmEvents, $mmSitesManager, mmCoreEventCompletionModuleViewed) {
+.factory('$mmCourse', function($mmSite, $translate, $q, $log, $mmEvents, $mmSitesManager, $http, mmCoreEventCompletionModuleViewed) {
 
     $log = $log.getInstance('$mmCourse');
 
@@ -424,10 +424,11 @@ angular.module('mm.core.course')
         preSets.cacheKey = getSectionsCacheKey(courseid);
 
         return $mmSitesManager.getSite(siteId).then(function(site) {
-            return site.read('core_course_get_contents', {
+            return $http.get('/core/components/course/json/activities.json', {
                 courseid: courseid,
                 options: []
             }, preSets).then(function(sections) {
+                sections = sections.data;
                 angular.forEach(sections, function(section) {
                     angular.forEach(section.modules, function(module) {
                         addContentsIfNeeded(module);
