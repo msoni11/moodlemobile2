@@ -13,7 +13,8 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
         url: '/mod_dps',
         params: {
             module: null,
-            courseid: null
+            courseid: null,
+            sectionid: null,
         },
         views: {
             'site': {
@@ -23,6 +24,18 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
         }
     })
 
+    .state('site.mod_dps-enrol', {
+        url: '/mod_dps-enrol',
+        params: {
+            courseid: null
+        },
+        views: {
+            'site': {
+                controller: 'mmaModDpsEnrolCtrl',
+                templateUrl: 'addons/mod_dps/templates/enrol.html'
+            }
+        }
+    })
 })
 
 .config(function($mmCourseDelegateProvider, $mmContentLinksDelegateProvider) {

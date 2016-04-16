@@ -1,0 +1,18 @@
+{
+  "dps": {
+    "message": "This Daily INDEPTH will not start until another date. Please check back then. Start date: Wednesday, 15 June 2016, 12:00 AM",
+    "isActive": 1
+  },
+  "missed": {
+    "hasExceeded": 0,
+    "message": "Since you've missed more than allowed attempts"
+  },
+  "enrol": {
+    "hasEnrolled": 0,
+    "message": "You are currently not enrolled to this Cycle. Click continue to enrol."
+  },
+  "confirm": {
+    "hasConfirmed": 0,
+    "message": ""
+  }
+}

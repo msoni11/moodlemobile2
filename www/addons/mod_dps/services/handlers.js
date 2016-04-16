@@ -37,7 +37,7 @@ angular.module('mm.addons.mod_dps')
          * @param {Number} courseid The course ID.
          * @return {Function}
          */
-        self.getController = function(module, courseid) {
+        self.getController = function(module, courseid, sectionid) {
             return function($scope) {
                 $scope.title = module.name;
                 $scope.icon = $mmCourse.getModuleIconSrc('dps');
@@ -46,7 +46,7 @@ angular.module('mm.addons.mod_dps')
                         e.preventDefault();
                         e.stopPropagation();
                     }
-                    $state.go('site.mod_dps', {module: module, courseid: courseid});
+                    $state.go('site.mod_dps', {module: module, courseid: courseid, sectionid: sectionid});
                 };
             };
         };
