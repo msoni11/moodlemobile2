@@ -424,11 +424,9 @@ angular.module('mm.core.course')
         preSets.cacheKey = getSectionsCacheKey(courseid);
 
         return $mmSitesManager.getSite(siteId).then(function(site) {
-            return $http.get('/core/components/course/json/activities.json', {
-                courseid: courseid,
-                options: []
+            return $mmSite.read('local_indepthwebservices_get_contents', {
+                courseid: courseid
             }, preSets).then(function(sections) {
-                sections = sections.data;
                 angular.forEach(sections, function(section) {
                     angular.forEach(section.modules, function(module) {
                         addContentsIfNeeded(module);
