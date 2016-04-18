@@ -12,7 +12,7 @@
                 </div>
             </section>
 
-            <section class="card" ng-repeat="section in sections" ng-if="section.modules.length > 0 || section.summary != ''">
+            <section ng-repeat="section in sections" ng-if="section.modules.length > 0 || section.summary != ''">
                 <!-- Title and summary are displayed when multiple sections per page. -->
                 <div class="item item-divider" ng-if="sections.length > 1">
                     <h2><mm-format-text watch="true">{{ section.name }}</mm-format-text></h2>
@@ -22,19 +22,19 @@
                     <mm-format-text class="mm-content-with-float">{{ section.summary }}</mm-format-text>
                 </div>
 
-                <a class="item item-text-wrap" ng-repeat="module in section.modules" ng-click="action($event)" ng-class="{'item-button-right': buttons && buttons.length > 0, 'item-media': icon, 'item-completion': module.completionstatus}" ng-controller="module._controller" title="{{ title }}">
-
-                    <img ng-src="{{ icon }}" alt="" role="presentation" ng-if="icon">
-                    <mm-format-text watch="true">{{ title }}</mm-format-text>
-
-                    <button ng-repeat="button in buttons" ng-hide="button.hidden" ng-click="button.action($event)" class="button button-icon" aria-label="{{ button.label | translate }}">
-                        <i class="icon positive" ng-class="{'{{button.icon}}': button.icon}"></i>
-                    </button>
-
-                    <ion-spinner ng-if="spinner"></ion-spinner>
-
-                    <mm-completion ng-if="module.completionstatus" completion="module.completionstatus" module-name="title" after-change="completionChanged"></mm-completion>
-                </a>
+                <ion-list>
+                    <div ng-repeat="module in section.modules" ng-show="module.visible" style="margin-top:1px;">
+                      <ion-item class="item-stable" ng-class="{active: isModuleShown(module)}">
+                          <i class="icon" ng-click="toggleModule(module)" ng-class="isModuleShown(module) ? 'ion-minus' : 'ion-plus'"></i>
+                        &nbsp;
+                        <strong>{{module.name}}</strong> <i ng-click="action($event)" ng-controller="module._controller" class="icon ion-chevron-right icon-accessory pull-right"></i>
+                      </ion-item>
+                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Cycle Start Date : {{module.cycle_start}}</ion-item>
+                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Cycle End Date : {{module.cycle_end}}</ion-item>
+                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily Start Date : {{module.dps_start}}</ion-item>
+                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily End Date : {{module.dps_start}}</ion-item>
+                    </div>
+                </ion-list>
 
                 <!-- When there is nothing in the section. -->
                 <div class="item item-text-wrap" ng-if="!sitehome && section.modules.length < 1">
