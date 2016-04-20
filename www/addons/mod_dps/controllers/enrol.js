@@ -7,15 +7,20 @@ angular.module('mm.addons.mod_dps')
  * @name mmaModDpsEnrolCtrl
  */
 
-.controller('mmaModDpsEnrolCtrl', function($scope, $stateParams, $mmaModDps){
-    var courseid = $stateParams.courseid;
+.controller('mmaModDpsEnrolCtrl', function($scope, $stateParams, $mmaModDps, $state, $mmUtil){
+    var cmid = $stateParams.cmid;
     
     $scope.title = "Enrollment";
     $scope.description = "";
 
     function enrolUser() {
-        return $mmaModDps.enrolUser(courseid).then(function(result){
-            console.log(result);
+        return $mmaModDps.enrolUser(cmid).then(function(result){
+            if (result.success) {
+                //Redirect to confirm page on success.
+                $state.go('site.mod_dps-confirm', {'cmid': cmid})
+            } else {
+                $scope.enrolstatus = result
+            }
         }).catch(function(error) {
             if (error) {
                 $mmUtil.showErrorModal(error);

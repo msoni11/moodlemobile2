@@ -34,8 +34,10 @@ angular.module('mm.addons.mod_dps')
      * @param {}
      */
     self.getDpsStatus = function(courseId, cmId) {
-        return $http.get('/addons/mod_dps/json/status.json').then(function(result) {
-            statuses = result.data;
+        return $mmSite.read('mod_dps_get_status', {
+            'cmid' : cmId
+        }).then(function(result) {
+            statuses = result;
             return statuses;
         });
     }
@@ -47,13 +49,32 @@ angular.module('mm.addons.mod_dps')
      * @name $mmaModDps#enrolUser
      * @param {}
      */
-    self.enrolUser = function(courseId) {
-        return $http.get('/addons/mod_dps/json/enrol.json').then(function(result) {
-            //redirect to confirmation if succeed.
-            console.log(result.data);
-            return result.data;
-
+    self.enrolUser = function(cmId) {
+        return $mmSite.read('mod_dps_create_user_enrol', {
+            'cmid': cmId
+        }).then(function(result) {
+            //return enrollment status
+            return result;
         });
     }
+
+    /**
+     * This method can be used to confirm daily question of dps.
+     *
+     * @module mm.addons.mod_dps
+     * @name $mmaModDps#confirmDaily
+     * @param {}
+     */
+    self.confirmDaily = function(cmId) {
+        return $mmSite.read('mod_dps_create_daily_confirm', {
+            'cmid': cmId
+        }).then(function(result) {
+            //redirect to question page if succeed.
+            if (result.success) {
+                console.log('hurray!! it\'s confirmed')
+            }
+        });
+    }
+
     return self;
 });

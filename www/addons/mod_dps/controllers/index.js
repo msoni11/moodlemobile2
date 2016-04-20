@@ -33,6 +33,12 @@ angular.module('mm.addons.mod_dps')
     }
 
     getDpsStatus().finally(function() {
-        console.log('finally we are here');
-    }); 
+        $scope.sectionLoaded = true;
+    });
+
+    $scope.doRefresh = function() {
+        getDpsStatus().finally(function() {
+            $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
 });

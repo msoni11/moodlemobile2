@@ -8,11 +8,11 @@
     "message": "Since you've missed more than allowed attempts"
   },
   "enrol": {
-    "hasEnrolled": 0,
+    "isEnrolled": 1,
     "message": "You are currently not enrolled to this Cycle. Click continue to enrol."
   },
   "confirm": {
     "hasConfirmed": 0,
-    "message": ""
+    "message": "Confimation message"
   }
 }

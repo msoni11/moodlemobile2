@@ -1,4 +1,8 @@
 {
     "returntodaily": "Return to Daily INDEPTH",
-    "continue": "Continue"
+    "continue": "Continue",
+    "enrollme": "Yes, enroll me",
+    "noenrol": "No, just take me to the Daily INDEPTH",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
 }

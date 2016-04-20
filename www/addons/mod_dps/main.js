@@ -27,12 +27,25 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
     .state('site.mod_dps-enrol', {
         url: '/mod_dps-enrol',
         params: {
-            courseid: null
+            cmid: null
         },
         views: {
             'site': {
                 controller: 'mmaModDpsEnrolCtrl',
                 templateUrl: 'addons/mod_dps/templates/enrol.html'
+            }
+        }
+    })
+
+    .state('site.mod_dps-confirm', {
+        url: '/mod_dps-confirm',
+        params: {
+            cmid: null
+        },
+        views: {
+            'site': {
+                controller: 'mmaModDpsConfirmCtrl',
+                templateUrl: 'addons/mod_dps/templates/confirm.html'
             }
         }
     })
