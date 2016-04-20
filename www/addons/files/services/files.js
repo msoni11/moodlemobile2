@@ -344,6 +344,7 @@ angular.module('mm.addons.files')
      * @return {Boolean}
      */
     self.isPluginEnabled = function() {
+        return false;
         var canAccessFiles = self.canAccessFiles(),
             canAccessMyFiles = $mmSite.canAccessMyFiles(),
             canUploadFiles = $mmSite.canUploadFiles();
