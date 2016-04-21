@@ -4,5 +4,6 @@
     "enrollme": "Yes, enroll me",
     "noenrol": "No, just take me to the Daily INDEPTH",
     "confirm": "Confirm",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "confirmenrol": "Congratulations! You have successfully enrolled in this cycle."
 }

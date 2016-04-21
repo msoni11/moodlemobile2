@@ -7,7 +7,7 @@ angular.module('mm.addons.mod_dps')
  * @ngdoc controller
  * @name $mmaModDps
  */
-.factory('$mmaModDps', function($mmSite, $q, $mmUser, $mmSitesManager, $http) {
+.factory('$mmaModDps', function($mmSite, $q, $mmUser, $mmSitesManager, $mmCourse, $http) {
     var self = {};
 
     /**
@@ -31,9 +31,9 @@ angular.module('mm.addons.mod_dps')
      * 
      * @module mm.addons.mod_dps
      * @name $mmaModDps#getDpsStatus
-     * @param {}
+     * @param {Number} cmId Course Module ID
      */
-    self.getDpsStatus = function(courseId, cmId) {
+    self.getDpsStatus = function(cmId) {
         return $mmSite.read('mod_dps_get_status', {
             'cmid' : cmId
         }).then(function(result) {
@@ -47,7 +47,7 @@ angular.module('mm.addons.mod_dps')
      * 
      * @module mm.addons.mod_dps
      * @name $mmaModDps#enrolUser
-     * @param {}
+     * @param {Number} cmId Course Module ID
      */
     self.enrolUser = function(cmId) {
         return $mmSite.read('mod_dps_create_user_enrol', {
@@ -63,16 +63,14 @@ angular.module('mm.addons.mod_dps')
      *
      * @module mm.addons.mod_dps
      * @name $mmaModDps#confirmDaily
-     * @param {}
+     * @param {Number} cmId Course Module ID
      */
     self.confirmDaily = function(cmId) {
         return $mmSite.read('mod_dps_create_daily_confirm', {
             'cmid': cmId
         }).then(function(result) {
-            //redirect to question page if succeed.
-            if (result.success) {
-                console.log('hurray!! it\'s confirmed')
-            }
+            //return confirmation status result.
+            return result;
         });
     }
 

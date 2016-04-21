@@ -10,6 +10,7 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
     $stateProvider
 
     .state('site.mod_dps', {
+        cache: false,
         url: '/mod_dps',
         params: {
             module: null,
@@ -27,7 +28,9 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
     .state('site.mod_dps-enrol', {
         url: '/mod_dps-enrol',
         params: {
-            cmid: null
+            courseid: null,
+            module: null,
+            sectionid: null
         },
         views: {
             'site': {
@@ -40,7 +43,9 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
     .state('site.mod_dps-confirm', {
         url: '/mod_dps-confirm',
         params: {
-            cmid: null
+            courseid: null,
+            module: null,
+            sectionid: null
         },
         views: {
             'site': {

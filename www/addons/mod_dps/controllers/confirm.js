@@ -8,12 +8,19 @@ angular.module('mm.addons.mod_dps')
  */
 
 .controller('mmaModDpsConfirmCtrl', function($scope, $stateParams, $mmaModDps, $mmUtil){
-    var cmid = $stateParams.cmid;
+    var module = $stateParams.module;
+    var courseid = $stateParams.courseid;
+    var sectionid = $stateParams.sectionid;
+
+    $scope.title = "Confirmation";
+    
+    $scope.module = module;
+    $scope.courseid = courseid;
+    $scope.sectionid = sectionid;
 
     function confirmDaily() {
-        return $mmaModDps.confirmDaily(cmid).then(function(result){
-            console.log(result);
-            //Redirect to attempt question page on success.
+        return $mmaModDps.confirmDaily(module.id).then(function(status){
+            $scope.status = status;
         }).catch(function(error) {
             if (error) {
                 $mmUtil.showErrorModal(error);
@@ -24,6 +31,6 @@ angular.module('mm.addons.mod_dps')
     }
 
     confirmDaily().finally(function(){
-        console.log('confirmed');
+        $scope.sectionLoaded = true;
     })
 })
