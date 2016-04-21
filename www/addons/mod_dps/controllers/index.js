@@ -21,7 +21,7 @@ angular.module('mm.addons.mod_dps')
     $scope.module = module;
     cmid = module.id
     function getDpsStatus() {
-        return $mmaModDps.getDpsStatus(courseid, cmid).then(function(status){
+        return $mmaModDps.getDpsStatus(cmid).then(function(status){
             $scope.status = status;
         }).catch(function(error) {
             if (error) {

@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view cache-view="false">
     <ion-nav-title><mm-format-text watch=true>{{title}}</mm-format-text></ion-nav-title>
     <ion-content delegate-handle="mmSectionScroll" padding="true">
         <ion-refresher pulling-text="{{ 'mm.core.pulltorefresh' | translate }}" ng-if="sectionLoaded" on-refresh="doRefresh()"></ion-refresher>
@@ -23,7 +23,7 @@
                         <div class="item item-text-wrap item-body">
                             <mm-format-text class="mm-content-with-float">{{ status.enrol.message }}</mm-format-text>
                         </div>
-                        <a ui-sref="site.mod_dps-enrol({cmid: module.id})" class="button button-block">{{ 'mma.mod_dps.enrollme' | translate }}</a>
+                        <a ui-sref="site.mod_dps-enrol({courseid: courseid, module: module, sectionid: sectionid})" class="button button-block">{{ 'mma.mod_dps.enrollme' | translate }}</a>
                         <a ui-sref="site.mm_course-section({cid: courseid, sectionid: sectionid, mid: module.id})" class="button button-block">{{ 'mma.mod_dps.noenrol' | translate }}</a>
                     </div>
                     <div ng-if="status.enrol.isEnrolled">
@@ -31,7 +31,7 @@
                             <div class="item item-text-wrap item-body">
                                 <mm-format-text class="mm-content-with-float">{{ status.confirm.message }}</mm-format-text>
                             </div>
-                            <a ui-sref="site.mod_dps-confirm({cmid: module.id})" class="button button-block">{{ 'mma.mod_dps.confirm' | translate }}</a>
+                            <a ui-sref="site.mod_dps-confirm({courseid: courseid, module: module, sectionid: sectionid})" class="button button-block">{{ 'mma.mod_dps.confirm' | translate }}</a>
                             <a ui-sref="site.mm_course-section({cid: courseid, sectionid: sectionid, mid: module.id})" class="button button-block">{{ 'mma.mod_dps.cancel' | translate }}</a>
                         </div>
                     </div>
