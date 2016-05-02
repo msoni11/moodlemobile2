@@ -32,11 +32,19 @@ angular.module('mm.addons.mod_dps')
      * @module mm.addons.mod_dps
      * @name $mmaModDps#getDpsStatus
      * @param {Number} cmId Course Module ID
+     * @param {Boolean} [refresh] True when we should not get the value from the cache. 
      */
-    self.getDpsStatus = function(cmId) {
-        return $mmSite.read('mod_dps_get_status', {
-            'cmid' : cmId
-        }).then(function(result) {
+    self.getDpsStatus = function(cmId, refresh) {
+        var params = {
+            'cmid': cmId
+        },
+        preSets = {};
+
+        if (refresh) {
+            preSets.getFromCache = false;
+        }
+
+        return $mmSite.read('mod_dps_get_status', params, preSets).then(function(result) {
             statuses = result;
             return statuses;
         });
@@ -70,6 +78,51 @@ angular.module('mm.addons.mod_dps')
             'cmid': cmId
         }).then(function(result) {
             //return confirmation status result.
+            return result;
+        });
+    }
+
+    /**
+     * This method can be used to get dps daily question of the day.
+     *
+     * @module mm.addons.mod_dps
+     * @name $mmaModDps#attemptDaily
+     * @param {Number} cmId Course Module ID
+     * @param {Boolean} [refresh] True when we should not get the value from the cache. 
+     */
+     self.getDailyQuestion = function(cmId, refresh) {
+        var params = {
+            'cmid': cmId
+        },
+        preSets = {};
+
+        if (refresh) {
+            preSets.getFromCache = false;
+        }
+        return $mmSite.read('mod_dps_get_daily_question', params, preSets).then(function(result) {
+            //return daily question of the day
+            return result;
+        });
+     }
+    /**
+     * This method can be used to get dps daily question of the day.
+     *
+     * @module mm.addons.mod_dps
+     * @name $mmaModDps#attemptDaily
+     * @param {Number} cmID Course Module ID
+     * @param {Boolean} [refresh] True when we should not get the value from the cache.
+     */
+    self.attemptDaily = function(cmId, refresh) {
+        var params = {
+            'cmid': cmId
+        },
+        preSets = {};
+
+        if (refresh) {
+            preSets.getFromCache = false;
+        }
+        return $mmSite.read('mod_dps_get_daily_question', params, preSets).then(function(result) {
+            //return daily question of the day
             return result;
         });
     }

@@ -3,10 +3,9 @@
         <mm-loading hide-until="sectionLoaded" loading-padding-top="loadingPaddingTop">
             <!--<div ng-if="status.success">-->
                 <div class="item item-wrap-text item-body">
-                    We are currently working on question attempt page. 
-                    Please check it with later version of mobile app.
+                    {{status.message}}
                 <div>
-                <a ui-sref="site.mod_dps({courseid: courseid, sectionid: sectionid, module: module})" class="button button-block">{{mma.mod_dps.continue | translate}}</a>
+                <!--<a ui-sref="site.mod_dps({courseid: courseid, sectionid: sectionid, module: module})" class="button button-block">{{mma.mod_dps.continue | translate}}</a>-->
             <!--</div>-->
         </mm-loading>
     </ion-content>
