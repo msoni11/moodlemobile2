@@ -169,4 +169,19 @@ angular.module('mm.core.course')
             observer.off();
         }
     });
+
+    /*
+     * if given group is the selected group, deselect it
+     * else, select the given group
+     */
+    $scope.toggleModule = function(module) {
+        if ($scope.isModuleShown(module)) {
+            $scope.shownModule = null;
+        } else {
+            $scope.shownModule = module;
+        }
+    };
+    $scope.isModuleShown = function(module) {
+        return $scope.shownModule === module;
+    };
 });

@@ -1,0 +1,42 @@
+<ion-view cache-view="false">
+    <ion-nav-title><mm-format-text watch=true>{{title}}</mm-format-text></ion-nav-title>
+    <ion-content delegate-handle="mmSectionScroll" padding="true">
+        <ion-refresher pulling-text="{{ 'mm.core.pulltorefresh' | translate }}" ng-if="sectionLoaded" on-refresh="doRefresh()"></ion-refresher>
+        <mm-loading hide-until="sectionLoaded" loading-padding-top="loadingPaddingTop">
+            <div ng-if="!status.dps.isActive">
+                <!-- 
+                If dps is not active, we will have two situations: either future dps or past dps
+                -->
+                <mma-mod-dps-status status="status.dps.message" courseid="courseid" sectionid="sectionid" module="module" watch="true">
+                </mm-mod-dps-status>
+            </div>
+            <div ng-if="status.dps.isActive">
+                <!-- Check if missed days exceeded. -->
+                <div ng-if="status.missed.hasExceeded">
+                    <mma-mod-dps-status status="status.missed.message" courseid="courseid" sectionid="sectionid" module="module" watch="true">
+                    </mm-mod-dps-status>
+                </div>
+                <!-- Check if missed days not exceeded. -->
+                <div ng-if="!status.missed.hasExceeded">
+                    <!-- Check if user is enrolled to dps or not -->
+                    <div ng-if="!status.enrol.isEnrolled">
+                        <div class="item item-text-wrap item-body">
+                            <mm-format-text class="mm-content-with-float">{{ status.enrol.message }}</mm-format-text>
+                        </div>
+                        <a ui-sref="site.mod_dps-enrol({courseid: courseid, module: module, sectionid: sectionid})" class="button button-block">{{ 'mma.mod_dps.enrollme' | translate }}</a>
+                        <a ui-sref="site.mm_course-section({cid: courseid, sectionid: sectionid, mid: module.id})" class="button button-block">{{ 'mma.mod_dps.noenrol' | translate }}</a>
+                    </div>
+                    <div ng-if="status.enrol.isEnrolled">
+                        <div ng-if="!status.confirm.hasConfirmed">
+                            <div class="item item-text-wrap item-body">
+                                <mm-format-text class="mm-content-with-float">{{ status.confirm.message }}</mm-format-text>
+                            </div>
+                            <a ui-sref="site.mod_dps-confirm({courseid: courseid, module: module, sectionid: sectionid})" class="button button-block">{{ 'mma.mod_dps.confirm' | translate }}</a>
+                            <a ui-sref="site.mm_course-section({cid: courseid, sectionid: sectionid, mid: module.id})" class="button button-block">{{ 'mma.mod_dps.cancel' | translate }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mm-loading>
+    </ion-content>
+</ion-view>

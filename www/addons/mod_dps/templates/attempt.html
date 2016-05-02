@@ -1,0 +1,23 @@
+<ion-view>
+    <ion-nav-title><mm-format-text watch=true>{{title}}</mm-format-text></ion-nav-title>
+    <ion-content padding="true">
+        <div ng-if="!attempt.success">
+            <mma-mod-dps-status status="attempt.message" courseid="courseid" sectionid="sectionid" module="module" watch="true">
+        </div>
+        <div ng-if="attempt.success">
+            <mm-timer class="item item-text-wrap" end-time="1462174988" finished="timeUp()" timer-text="{{ 'mma.mod_dps.timeleft' | translate }}"></mm-timer>
+            <form name="dpsAttempt" ng-submit="submit(att)">
+                <header class="dps_missed_day_header">{{attempt.header}}</header>
+                <div ng-if="attempt.questions">
+                    <div ng-repeat="que in attempt.questions">
+                        {{que.questiontext}}
+                        <div ng-repeat="ans in que.answers">
+                            <ion-radio ng-model="att.choice" ng-value="ans"><mm-format-text>{{ans.answertext}}</mm-format-text></ion-radio>
+                        </div>
+                    </div>
+                    <button type="submit" class="button button-block" >{{ 'mma.mod_dps.submit' | translate }}</a>
+                </div>
+            </form>
+        </div>
+    </ion-content>
+</ion-view>
