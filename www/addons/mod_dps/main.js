@@ -10,7 +10,6 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
     $stateProvider
 
     .state('site.mod_dps', {
-        cache: false,
         url: '/mod_dps',
         params: {
             module: null,

@@ -6,5 +6,8 @@
     "confirm": "Confirm",
     "cancel": "Cancel",
     "confirmenrol": "Congratulations! You have successfully enrolled in this cycle.",
-    "submit": "Submit"
+    "submit": "Submit",
+    "confirmsubmit": "Are you sure you want to submit answer ?",
+    "timeleft": "Time Remaining",
+    "question": "Question"
 }

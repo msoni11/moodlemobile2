@@ -383,3 +383,20 @@ mm-timer {
     /* show the checkmark icon when its checked */
     visibility: visible;
   }
+
+/**
+ * General table styling
+ */
+ table {
+  font-size:10pt;
+ }
+
+ th, td {
+  padding:0.5em;
+  color: #666;
+ }
+
+.generaltable th, .generaltable td {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}

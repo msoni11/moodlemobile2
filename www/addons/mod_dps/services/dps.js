@@ -104,15 +104,16 @@ angular.module('mm.addons.mod_dps')
             return result;
         });
      }
+
     /**
      * This method can be used to get dps daily question of the day.
      *
      * @module mm.addons.mod_dps
-     * @name $mmaModDps#attemptDaily
+     * @name $mmaModDps#startAttempt
      * @param {Number} cmID Course Module ID
      * @param {Boolean} [refresh] True when we should not get the value from the cache.
      */
-    self.attemptDaily = function(cmId, refresh) {
+    self.startAttempt = function(cmId, refresh) {
         var params = {
             'cmid': cmId
         },
@@ -121,11 +122,18 @@ angular.module('mm.addons.mod_dps')
         if (refresh) {
             preSets.getFromCache = false;
         }
-        return $mmSite.read('mod_dps_get_daily_question', params, preSets).then(function(result) {
-            //return daily question of the day
-            return result;
-        });
+        return $mmSite.read('mod_dps_get_daily_question', params, preSets);
     }
+
+    /**
+     * This method can be used to record user submission for daily.
+     *
+     * @module mm.addons.mod_dps
+     * @name $mmadModDps#processAttempt
+     */
+     self.processAttempt = function() {
+        //Process attempt code will go here.
+     }
 
     return self;
 });
