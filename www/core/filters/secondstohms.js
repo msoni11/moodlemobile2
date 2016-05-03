@@ -38,6 +38,7 @@ angular.module('mm.core')
         seconds -= hours * mmCoreSecondsHour;
         minutes = Math.floor(seconds / mmCoreSecondsMinute);
         seconds -= minutes * mmCoreSecondsMinute;
+        seconds = Math.floor(seconds);
 
         return $mmText.twoDigits(hours) + ':' + $mmText.twoDigits(minutes) + ':' + $mmText.twoDigits(seconds);
     };
