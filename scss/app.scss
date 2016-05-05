@@ -27,5 +27,29 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .button.active,
 .button.activated {
   box-shadow: none;
-  color: #fff;
+  color: #333;
+  background-color: #eee;
+  border-color: #ccc;
+}
+
+.button {
+  color: #333;
+  background-color: #eee;
+  border-color: #ccc;
+}
+
+.button:hover {
+  color: #333;
+}
+
+h1, h2, .item .item-heading, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  color: #c60;
+}
+
+a.item {
+  color: #c60;
+}
+
+.item.item-stable {
+  color: #c60;
 }

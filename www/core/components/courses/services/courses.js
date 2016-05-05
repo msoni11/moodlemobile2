@@ -245,13 +245,13 @@ angular.module('mm.core.courses')
                     cacheKey: getUserCoursesCacheKey(),
                     omitExpires: preferCache
                 },
-                data = {userid: userid};
+                data = {};
 
             if (typeof userid === 'undefined') {
                 return $q.reject();
             }
 
-            return site.read('core_enrol_get_users_courses', data, presets).then(function(courses) {
+            return site.read('local_indepthwebservices_get_users_courses', data, presets).then(function(courses) {
                 if (siteid === $mmSite.getId()) {
                     // Only store courses if we're getting current site courses. This function is deprecated and will be removed.
                     storeCoursesInMemory(courses);

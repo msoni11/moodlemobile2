@@ -68,7 +68,7 @@ angular.module('mm.core.login')
             }
         }
 
-        return $state.go('site.mm_courses');
+        return $state.go('site.mm_modules');
     };
 
     /**

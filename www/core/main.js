@@ -103,6 +103,10 @@ angular.module('mm.core', ['pascalprecht.translate'])
         return angular.isObject(data) && String(data) !== '[object File]' ? $mmUtilProvider.param(data) : data;
     }];
 
+    // This is for indepth dev site testing. We have browser creds applied 
+    // on dev server.
+    $httpProvider.defaults.withCredentials = true;
+
     // Add some protocols to safe protocols.
     function addProtocolIfMissing(list, protocol) {
         if (list.indexOf(protocol) == -1) {
