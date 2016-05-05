@@ -25,12 +25,17 @@
                 <ion-list>
                     <div ng-repeat="module in section.modules" ng-show="module.visible" style="margin-top:1px;">
                       <ion-item class="item-stable" ng-class="{active: isModuleShown(module)}">
-                          <i class="icon" ng-click="toggleModule(module)" ng-class="isModuleShown(module) ? 'ion-minus' : 'ion-plus'"></i>
+                        <button ng-click="toggleModule(module)" class="button-plus">
+                          <i class="icon" ng-click="" ng-class="isModuleShown(module) ? 'ion-minus' : 'ion-plus'"></i>
+                        </button>
                         &nbsp;
-                        <strong>{{module.name}}</strong> <i ng-click="action($event)" ng-controller="module._controller" class="icon ion-chevron-right icon-accessory pull-right"></i>
+                        <span ng-click="action($event)" ng-controller="module._controller">
+                          <strong>{{module.name}}</strong>
+                          <button class="pull-right button-forward">
+                            <i class="icon ion-chevron-right icon-accessory"></i>
+                          </button>
+                        </span>
                       </ion-item>
-                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Cycle Start Date : {{module.cycle_start}}</ion-item>
-                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Cycle End Date : {{module.cycle_end}}</ion-item>
                       <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily Start Date : {{module.dps_start}}</ion-item>
                       <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily End Date : {{module.dps_start}}</ion-item>
                     </div>
