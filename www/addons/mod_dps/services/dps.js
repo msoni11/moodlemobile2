@@ -131,9 +131,38 @@ angular.module('mm.addons.mod_dps')
      * @module mm.addons.mod_dps
      * @name $mmadModDps#processAttempt
      */
-     self.processAttempt = function() {
-        //Process attempt code will go here.
+     self.processAttempt = function(cmId, qId, timeup, ansId) {
+        var params = {
+            questionId: qId,
+            answerId : ansId,
+            cmid: cmId,
+            timeup: timeup ? 1 : 0
+        }
+        preSets = {};
+        //This should never be cached.
+        preSets.getFromCache = false;
+
+        return $mmSite.read('mod_dps_create_daily_submission', params, preSets).then(function(result) {
+            console.log(result);
+        })
      }
 
+    /**
+     * Treats some data to be sent to a WS.
+     * Converts an object of type key => value into an array of type 0 => {name: key, value: value}.
+     *
+     * @param  {Object} data Data to treat.
+     * @return {Object[]}    Treated data.
+     */
+    function treatDataToSend(data) {
+        var treated = [];
+        angular.forEach(data, function(value, key) {
+            treated.push({
+                name: key,
+                value: value
+            });
+        });
+        return treated;
+    }
     return self;
 });

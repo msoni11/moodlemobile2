@@ -6,7 +6,7 @@
         </div>
         <div ng-if="attempt.success">
             <mm-timer end-time="endTime" finished="timeUp()" timer-text="{{ 'mma.mod_dps.timeleft' | translate }}"></mm-timer>
-            <form name="mma-mod_dps-attempt-form" ng-submit="submit(att)">
+            <form name="mma-mod_dps-attempt-form" ng-submit="finishAttempt()">
                 <div id="dps_missed_day_header">{{attempt.header}}</div>
                 <fieldset>
                     <legend>{{ 'mma.mod_dps.question' | translate }}</legend>
@@ -14,7 +14,7 @@
                         <div ng-repeat="que in attempt.questions">
                             {{que.questiontext}}
                             <div ng-repeat="ans in que.answers">
-                                <ion-radio ng-model="att.choice" ng-value="ans"><mm-format-text>{{ans.answertext}}</mm-format-text></ion-radio>
+                                <ion-radio ng-model="att.choice" ng-value="ans.value"><mm-format-text>{{ans.answertext}}</mm-format-text></ion-radio>
                             </div>
                         </div>
                     </div>

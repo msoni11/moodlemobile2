@@ -7,7 +7,7 @@
  * @name mmaModDpsAttemptCtrl
  */
 
-.controller('mmaModDpsAttemptCtrl', function($scope, $stateParams, $mmaModDps, $mmaDpsHelper, $mmUtil, $q, $log) {
+.controller('mmaModDpsAttemptCtrl', function($scope, $stateParams, $mmaModDps, $mmaDpsHelper, $mmUtil, $q, $log, $translate) {
 
     $log = $log.getInstance("mmaModDpsAttemptCtrl");
 
@@ -20,9 +20,10 @@
     $scope.module = module;
     $scope.courseid = courseid;
     $scope.sectionid = sectionid;
-    $scope.att = {};
+    //Model for choice selection for dps question.
+    $scope.att = {'choice': 0}
 
-    $scope.title = "Daily Attempt";
+    $scope.title = $translate.instant('mma.mod_dps.dailyattempt');
     function startAttempt(refresh) {
         return $mmaModDps.startAttempt(module.id, refresh).then(function(result) {
             $scope.attempt = result;
@@ -36,8 +37,9 @@
     }
 
     // Convenience function to start the timer for attempt.
-    function start(preflightData) {
+    function start() {
         var promise;
+
         $scope.dataLoaded = false;
 
         // Fetch data.
@@ -61,9 +63,8 @@
                 $mmUtil.showErrorModal('mm.addons.couldnotloadstatus', true);
              }
         }).then(function() {
-            console.log(attempt);
             if (attempt.success) {
-                // Load page
+                // Init the timer here.
                 initTimer();
             } else {
                 // Load Graph here
@@ -71,8 +72,8 @@
         });
     }
 
-    $scope.finishAttempt = function() {
-        finishAttempt(true, true);
+    $scope.finishAttempt = function(att) {
+        finishAttempt(att);
     }
 
     // Dps time has finished.
@@ -83,41 +84,56 @@
 
         timeUpCalled = true;
         var modal = $mmUtil.showModalLoading('mm.core.sending', true);
-        finishAttempt(false, true).finally(function() {
+        processAttempt(true).finally(function() {
             modal.dismiss();
         });
     };
 
     // Finish an attempt, either by timeup or because the user clicked to finish it.
-    function finishAttempt(finish, timeup) {
-        // Show confirm if the user clicked the finish button and the dps is in progress.
+    function finishAttempt(att) {
+        //Display warning if no selection is made and user submits
+        if ($scope.att.choice === '') {
+            $mmUtil.showModal('mma.mod_dps.warning', 'mma.mod_dps.warningattempt');
+        } else {
+            //Show confirmation only if user submit by itself.
+            promise = $mmUtil.showConfirm($translate('mma.mod_dps.confirmsubmission'));
+            promise.then(function() {
+                return processAttempt(false).then(function() {
+                }).catch(function(message) {
+                });
+            });
+        }
     }
 
-    function processAttempt(finish, timeup) {
-        return true;
+    function processAttempt(timeup) {
         // This call will be sent to record user's submission for daily.
-        return $mmaModDps.processAttempt(attempt.id, $scope.att, finish, timeup).then(function() {
+        return $mmaModDps.processAttempt(module.id, getQuestionId(), timeup, getAnswers()).then(function() {
             // Answers saved.
         });
-    }
-
-    function leavePlayer() {
-
     }
 
    // Initializes the timer if enabled.
     function initTimer() {
         var t = new Date();
-        $log.info(t);
         t.setSeconds(t.getSeconds() + dpsAttemptInfo.timerstartvalue);
-        $log.info(t, t.getTime());
         $scope.endTime = t.getTime()/1000;
     }
 
-    start();
-
-    $scope.submit = function(att) {
-        console.log($scope.att);
+    // Get questionId
+    function getQuestionId() {
+        var qid = 0;
+        angular.forEach(dpsAttemptInfo.questions, function (v, k) {
+            //We're sure that we will get single question for a day only:)
+            qid = v.id;
+        });
+        return qid;
     }
+
+    function getAnswers() {
+        return $scope.att.choice;
+    }
+
+    //Initialize start page with start
+    start();
 })
 
