@@ -142,27 +142,29 @@ angular.module('mm.addons.mod_dps')
         //This should never be cached.
         preSets.getFromCache = false;
 
-        return $mmSite.read('mod_dps_create_daily_submission', params, preSets).then(function(result) {
-            console.log(result);
-        })
+        return $mmSite.read('mod_dps_create_daily_submission', params, preSets);
      }
 
     /**
-     * Treats some data to be sent to a WS.
-     * Converts an object of type key => value into an array of type 0 => {name: key, value: value}.
+     * This method can be used to get user stats for daily
      *
-     * @param  {Object} data Data to treat.
-     * @return {Object[]}    Treated data.
      */
-    function treatDataToSend(data) {
-        var treated = [];
-        angular.forEach(data, function(value, key) {
-            treated.push({
-                name: key,
-                value: value
-            });
+    self.getStats = function(cmId, refresh) {
+        var params = {
+            cmid: cmId
+        }
+
+        preSets = {}
+        if (refresh) {
+            preSets.getFromCache = false;
+        }
+
+        return $mmSite.read('mod_dps_get_stats', params, preSets).then(function(result){
+            console.log(result);
+            return result;
         });
-        return treated;
+
     }
+
     return self;
 });

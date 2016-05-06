@@ -82,6 +82,21 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
             }
         }
     })
+
+    .state('site.mod_dps-stats', {
+        url: '/mod_dps-stats',
+        params: {
+            courseid: null,
+            module: null,
+            sectionid: null
+        },
+        views: {
+            'site': {
+                controller: 'mmaModDpsStats',
+                templateUrl: 'addons/mod_dps/templates/stats.html'
+            }
+        }
+    })
 })
 
 .config(function($mmCourseDelegateProvider, $mmContentLinksDelegateProvider) {

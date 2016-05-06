@@ -1,4 +1,4 @@
- angular.module('mm.addons.mod_dps')
+angular.module('mm.addons.mod_dps')
 
 /**
  * Dps question attempt controller
@@ -7,7 +7,8 @@
  * @name mmaModDpsAttemptCtrl
  */
 
-.controller('mmaModDpsAttemptCtrl', function($scope, $stateParams, $mmaModDps, $mmaDpsHelper, $mmUtil, $q, $log, $translate) {
+.controller('mmaModDpsAttemptCtrl', function($scope, $stateParams, $mmaModDps, $mmaDpsHelper, $mmUtil, $q, $log, 
+    $translate, $state) {
 
     $log = $log.getInstance("mmaModDpsAttemptCtrl");
 
@@ -96,9 +97,15 @@
             $mmUtil.showModal('mma.mod_dps.warning', 'mma.mod_dps.warningattempt');
         } else {
             //Show confirmation only if user submit by itself.
-            promise = $mmUtil.showConfirm($translate('mma.mod_dps.confirmsubmission'));
+            promise = $mmUtil.showConfirm($translate.instant('mma.mod_dps.confirmsubmission'));
             promise.then(function() {
-                return processAttempt(false).then(function() {
+                return processAttempt(false).then(function(result) {
+                    if (result.success) {
+                        $state.go('site.mod_dps-stats', {
+                            courseid: courseid,
+                            module: module
+                        });
+                    }
                 }).catch(function(message) {
                 });
             });
@@ -107,9 +114,7 @@
 
     function processAttempt(timeup) {
         // This call will be sent to record user's submission for daily.
-        return $mmaModDps.processAttempt(module.id, getQuestionId(), timeup, getAnswers()).then(function() {
-            // Answers saved.
-        });
+        return $mmaModDps.processAttempt(module.id, getQuestionId(), timeup, getAnswers());
     }
 
    // Initializes the timer if enabled.
