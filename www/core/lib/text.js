@@ -158,15 +158,15 @@ angular.module('mm.core')
 
         return $mmLang.getCurrentLanguage().then(function(language) {
             // Match the current language
-            var currentLangRe = new RegExp('<(?:lang|span)[^>]+lang="' + language + '"[^>]*>(.*?)<\/(?:lang|span)>', 'g'),
-                anyLangRE = /<(?:lang|span)[^>]+lang="[a-zA-Z0-9_-]+"[^>]*>(.*?)<\/(?:lang|span)>/g;
+            var currentLangRe = new RegExp('<(?:lang|sxyz)[^>]+lang="' + language + '"[^>]*>(.*?)<\/(?:lang|sxyz)>', 'g'),
+                anyLangRE = /<(?:lang|sxyz)[^>]+lang="[a-zA-Z0-9_-]+"[^>]*>(.*?)<\/(?:lang|sxyz)>/g;
 
             if (!text.match(currentLangRe)) {
                 // Current lang not found. Try to find the first language.
                 var matches = text.match(anyLangRE);
                 if (matches && matches[0]) {
                     language = matches[0].match(/lang="([a-zA-Z0-9_-]+)"/)[1];
-                    currentLangRe = new RegExp('<(?:lang|span)[^>]+lang="' + language + '"[^>]*>(.*?)<\/(?:lang|span)>', 'g');
+                    currentLangRe = new RegExp('<(?:lang|sxyz)[^>]+lang="' + language + '"[^>]*>(.*?)<\/(?:lang|sxyz)>', 'g');
                 } else {
                     // No multi-lang tag found, stop.
                     return text;
