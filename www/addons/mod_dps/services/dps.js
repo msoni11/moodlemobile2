@@ -159,9 +159,9 @@ angular.module('mm.addons.mod_dps')
             preSets.getFromCache = false;
         }
 
-        return $mmSite.read('mod_dps_get_stats', params, preSets).then(function(result){
-            console.log(result);
-            return result;
+        return $http.get('/addons/mod_dps/json/stats.json', params, preSets).then(function(result){
+            console.log(result.data);
+            return result.data;
         });
 
     }

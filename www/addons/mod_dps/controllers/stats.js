@@ -10,7 +10,7 @@ angular.module('mm.addons.mod_dps')
 .controller('mmaModDpsStatsCtrl', function($scope, $stateParams, $mmaModDps, $mmUtil) {
     var module = $stateParams.module,
         courseid = $stateParams.courseid,
-        sectionid = $stateParams.sectionid
+        sectionid = $stateParams.sectionid;
 
     function getStats() {
         return $mmaModDps.getStats(module.id).then(function(result){

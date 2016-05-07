@@ -92,7 +92,7 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
         },
         views: {
             'site': {
-                controller: 'mmaModDpsStats',
+                controller: 'mmaModDpsStatsCtrl',
                 templateUrl: 'addons/mod_dps/templates/stats.html'
             }
         }
