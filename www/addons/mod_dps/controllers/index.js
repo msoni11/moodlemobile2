@@ -22,14 +22,23 @@ angular.module('mm.addons.mod_dps')
 
     function getDpsStatus(refresh) {
         return $mmaModDps.getDpsStatus(cmid, refresh).then(function(status){
-            if (status.dps.isActive && status.enrol.isEnrolled && status.confirm.hasConfirmed && !status.missed.hasExceeded) {
+            if (status.finish.hasFinished) {
+                //Redirect to stats page
+                $state.go('site.mod_dps-stats', {
+                    courseid: courseid,
+                    module: module,
+                    sectionid: sectionid
+                })
+            } else if (status.dps.isActive && status.enrol.isEnrolled && 
+                status.confirm.hasConfirmed && !status.missed.hasExceeded) {
                 $state.go('site.mod_dps-attempt', {
                     courseid: courseid,
                     module: module,
                     sectionid: sectionid
                 });
+            } else {
+                $scope.status = status;
             }
-            $scope.status = status;
         }).catch(function(error) {
             if (error) {
                 $mmUtil.showErrorModal(error);

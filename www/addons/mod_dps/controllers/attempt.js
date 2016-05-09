@@ -73,8 +73,8 @@ angular.module('mm.addons.mod_dps')
         });
     }
 
-    $scope.finishAttempt = function(att) {
-        finishAttempt(att);
+    $scope.finishAttempt = function() {
+        finishAttempt();
     }
 
     // Dps time has finished.
@@ -91,9 +91,9 @@ angular.module('mm.addons.mod_dps')
     };
 
     // Finish an attempt, either by timeup or because the user clicked to finish it.
-    function finishAttempt(att) {
+    function finishAttempt() {
         //Display warning if no selection is made and user submits
-        if ($scope.att.choice === '') {
+        if (!$scope.att.choice) {
             $mmUtil.showModal('mma.mod_dps.warning', 'mma.mod_dps.warningattempt');
         } else {
             //Show confirmation only if user submit by itself.
