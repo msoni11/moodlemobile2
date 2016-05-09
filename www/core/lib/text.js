@@ -158,15 +158,15 @@ angular.module('mm.core')
 
         return $mmLang.getCurrentLanguage().then(function(language) {
             // Match the current language
-            var currentLangRe = new RegExp('<(?:lang|span)[^>]+lang="' + language + '"[^>]*>(.*?)<\/(?:lang|span)>', 'g'),
-                anyLangRE = /<(?:lang|span)[^>]+lang="[a-zA-Z0-9_-]+"[^>]*>(.*?)<\/(?:lang|span)>/g;
+            var currentLangRe = new RegExp('<(?:lang|sxyz)[^>]+lang="' + language + '"[^>]*>(.*?)<\/(?:lang|sxyz)>', 'g'),
+                anyLangRE = /<(?:lang|sxyz)[^>]+lang="[a-zA-Z0-9_-]+"[^>]*>(.*?)<\/(?:lang|sxyz)>/g;
 
             if (!text.match(currentLangRe)) {
                 // Current lang not found. Try to find the first language.
                 var matches = text.match(anyLangRE);
                 if (matches && matches[0]) {
                     language = matches[0].match(/lang="([a-zA-Z0-9_-]+)"/)[1];
-                    currentLangRe = new RegExp('<(?:lang|span)[^>]+lang="' + language + '"[^>]*>(.*?)<\/(?:lang|span)>', 'g');
+                    currentLangRe = new RegExp('<(?:lang|sxyz)[^>]+lang="' + language + '"[^>]*>(.*?)<\/(?:lang|sxyz)>', 'g');
                 } else {
                     // No multi-lang tag found, stop.
                     return text;
@@ -202,6 +202,31 @@ angular.module('mm.core')
             .replace(/>/g, "&gt;")
             .replace(/"/g, "&quot;")
             .replace(/'/g, "&#039;");
+    };
+
+    /**
+     * Decode an escaped HTML text. This implementation is based on PHP's htmlspecialchars_decode.
+     *
+     * @module mm.core
+     * @ngdoc method
+     * @name $mmText#decodeHTML
+     * @param  {String} text Text to decode.
+     * @return {String}      Decoded text.
+     */
+    self.decodeHTML = function(text) {
+        if (typeof text == 'undefined' || text === null || (typeof text == 'number' && isNaN(text))) {
+            return '';
+        } else if (typeof text != 'string') {
+            return '' + text;
+        }
+
+        return text
+            .replace(/&amp;/g, '&')
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'")
+            .replace(/&nbsp;/g, ' ');
     };
 
     /**
@@ -320,6 +345,23 @@ angular.module('mm.core')
             filename = filename.substr(0, filename.indexOf('?'));
         }
         return filename;
+    };
+
+    /**
+     * If a number has only 1 digit, add a leading zero to it.
+     *
+     * @module mm.core
+     * @ngdoc method
+     * @name $mmText#twoDigits
+     * @param  {Number|String} num Number to convert.
+     * @return {String}            Number with leading zeros.
+     */
+    self.twoDigits = function(num) {
+        if (num < 10) {
+            return '0' + num;
+        } else {
+            return '' + num; // Convert to string for coherence.
+        }
     };
 
     return self;

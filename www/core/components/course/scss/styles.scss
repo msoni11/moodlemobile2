@@ -1,3 +1,9 @@
+/**
+ * variables
+ */
+
+ $even:                 #fafafa !default;
+ $odd:                  #f0f0f0 !default;
 
 .item.item-button-right .badge.mm-course-download{
   right: $spinner-width + $item-padding;
@@ -19,4 +25,23 @@
 
 .pull-right {
   float: right;
+}
+
+.button-plus, .button-forward {
+  background: none;
+  border-color: transparent;
+  color: #c60;
+  font-size: 16px;
+}
+
+.item.item-stable-even {
+  background-color: $even;
+}
+
+.item.item-stable-odd {
+  background-color: $odd;
+}
+
+.ico-green {
+  color: #008000;
 }

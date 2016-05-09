@@ -70,7 +70,8 @@ angular.module('mm.core')
 
         $log = $log.getInstance('$mmUtil');
 
-        var self = {}; // Use 'self' to be coherent with the rest of services.
+        var self = {}, // Use 'self' to be coherent with the rest of services.
+            matchesFn;
 
         /**
          * Formats a URL, trim, lowercase, etc...
@@ -764,6 +765,22 @@ angular.module('mm.core')
         };
 
         /**
+         * Removes all properties from an object without losing its reference.
+         *
+         * @module mm.core
+         * @ngdoc method
+         * @name $mmUtil#emptyObject
+         * @param {Object} object Object to remove the properties.
+         */
+        self.emptyObject = function(object) {
+            for (var key in object) {
+                if (object.hasOwnProperty(key)) {
+                    delete object[key];
+                }
+            }
+        };
+
+        /**
          * Similar to $q.all, but if a promise fails this function's promise won't be rejected until ALL promises have finished.
          *
          * @module mm.core
@@ -1009,16 +1026,41 @@ angular.module('mm.core')
          * @return {Boolean}                    True if the element is found, false otherwise.
          */
         self.scrollToElement = function(container, selector, scrollDelegate, scrollParentClass) {
+            var position;
+
             if (!scrollDelegate) {
                 scrollDelegate = $ionicScrollDelegate;
             }
 
-            if (!scrollParentClass) {
-                scrollParentClass = 'scroll-content';
+            position = self.getElementXY(container, selector, scrollParentClass);
+            if (!position) {
+                return false;
             }
 
+            scrollDelegate.scrollTo(position[0], position[1]);
+            return true;
+        };
+
+        /**
+         * Retrieve the position of a element relative to another element.
+         *
+         * @module mm.core
+         * @ngdoc method
+         * @name $mmUtil#getElementXY
+         * @param  {Object} container           Element to search in.
+         * @param  {String} [selector]          Selector to find the element to scroll to. If not defined, scroll to the container.
+         * @param  {String} [scrollParentClass] Scroll Parent Class where to stop calculating the position. Default scroll-content.
+         * @return {Array}                      positionLeft, positionTop of the element relative to.
+         */
+        self.getElementXY = function(container, selector, positionParentClass) {
             var element = selector ? container.querySelector(selector) : container,
-                positionTop = positionLeft = 0;
+                offsetElement,
+                positionTop = 0,
+                positionLeft = 0;
+
+            if (!positionParentClass) {
+                positionParentClass = 'scroll-content';
+            }
 
             if (!element) {
                 return false;
@@ -1028,15 +1070,164 @@ angular.module('mm.core')
                 positionLeft += (element.offsetLeft - element.scrollLeft + element.clientLeft);
                 positionTop += (element.offsetTop - element.scrollTop + element.clientTop);
 
-                element = element.offsetParent;
-                // If scrolling element is reached, stop adding tops.
-                if (angular.element(element).hasClass(scrollParentClass)) {
+                offsetElement = element.offsetParent;
+                element = element.parentElement;
+
+                // Every parent class has to be checked but the position has to be got form offsetParent.
+                while (offsetElement != element && element) {
+                    // If positionParentClass element is reached, stop adding tops.
+                    if (angular.element(element).hasClass(positionParentClass)) {
+                        element = false;
+                    } else {
+                        element = element.parentElement;
+                    }
+                }
+
+                // Finally, check again.
+                if (angular.element(element).hasClass(positionParentClass)) {
                     element = false;
                 }
             }
 
-            scrollDelegate.scrollTo(positionLeft, positionTop);
-            return true;
+            return [positionLeft, positionTop];
+        };
+
+        /**
+         * Returns the contents of a certain selection in a DOM element.
+         *
+         * @module mm.core
+         * @ngdoc method
+         * @name $mmUtil#getContentsOfElement
+         * @param  {Object} element  DOM element to search in.
+         * @param  {String} selector Selector to search.
+         * @return {String}          Selection contents.
+         */
+        self.getContentsOfElement = function(element, selector) {
+            if (element) {
+                var el = element[0] || element, // Convert from jqLite to plain JS if needed.
+                    selected = el.querySelector(selector);
+                if (selected) {
+                    return selected.innerHTML;
+                }
+            }
+            return '';
+        };
+
+        /**
+         * Search and remove a certain element from inside another element.
+         *
+         * @module mm.core
+         * @ngdoc method
+         * @name $mmUtil#removeElement
+         * @param  {Object} element  DOM element to search in.
+         * @param  {String} selector Selector to search.
+         * @return {Void}
+         */
+        self.removeElement = function(element, selector) {
+            if (element) {
+                var el = element[0] || element, // Convert from jqLite to plain JS if needed.
+                    selected = el.querySelector(selector);
+                if (selected) {
+                    angular.element(selected).remove();
+                }
+            }
+        };
+
+        /**
+         * Search and remove a certain element from an HTML code.
+         *
+         * @module mm.core
+         * @ngdoc method
+         * @name $mmUtil#removeElementFromHtml
+         * @param  {String} html       HTML code to change.
+         * @param  {String} selector   Selector to search.
+         * @param  {Boolean} removeAll True if it should remove all matches found, false if it should only remove the first one.
+         * @return {String}            HTML without the element.
+         */
+        self.removeElementFromHtml = function(html, selector, removeAll) {
+            // Create a fake div element so we can search using querySelector.
+            var div = document.createElement('div'),
+                selected;
+
+            div.innerHTML = html;
+
+            if (removeAll) {
+                selected = div.querySelectorAll(selector);
+                angular.forEach(selected, function(el) {
+                    angular.element(el).remove();
+                });
+            } else {
+                selected = div.querySelector(selector);
+                if (selected) {
+                    angular.element(selected).remove();
+                }
+            }
+
+            return div.innerHTML;
+        };
+
+        /**
+         * Search for certain classes in an element contents and replace them with the specified new values.
+         *
+         * @module mm.core
+         * @ngdoc method
+         * @name $mmUtil#replaceClassesInElement
+         * @param  {Object} element DOM element.
+         * @param  {Object} map     Mapping of the classes to replace. Keys must be the value to replace, values must be
+         *                          the new class name. Example: {'correct': 'mm-question-answer-correct'}.
+         * @return {Void}
+         */
+        self.replaceClassesInElement = function(element, map) {
+            element = element[0] || element; // Convert from jqLite to plain JS if needed.
+
+            angular.forEach(map, function(newValue, toReplace) {
+                var matches = element.querySelectorAll('.' + toReplace);
+                angular.forEach(matches, function(element) {
+                    element.className = element.className.replace(toReplace, newValue);
+                });
+            });
+        };
+
+        /**
+         * Equivalent to element.closest(). If the browser doesn't support element.closest, it will
+         * traverse the parents to achieve the same functionality.
+         * Returns the closest ancestor of the current element (or the current element itself) which matches the selector.
+         *
+         * @module mm.core
+         * @ngdoc method
+         * @name $mmUtil#closest
+         * @param  {Object} element  DOM Element.
+         * @param  {String} selector Selector to search.
+         * @return {Object}          Closest ancestor.
+         */
+        self.closest = function(element, selector) {
+            // Try to use closest if the browser supports it.
+            if (typeof element.closest == 'function') {
+                return element.closest(selector);
+            }
+
+            if (!matchesFn) {
+                // Find the matches function supported by the browser.
+                ['matches','webkitMatchesSelector','mozMatchesSelector','msMatchesSelector','oMatchesSelector'].some(function(fn) {
+                    if (typeof document.body[fn] == 'function') {
+                        matchesFn = fn;
+                        return true;
+                    }
+                    return false;
+                });
+
+                if (!matchesFn) {
+                    return;
+                }
+            }
+
+            // Traverse parents.
+            while (element) {
+                if (element[matchesFn](selector)) {
+                    return element;
+                }
+                element = element.parentElement;
+            }
         };
 
         return self;

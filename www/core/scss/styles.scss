@@ -17,7 +17,7 @@
 
 // Bar content.
 $bar-content-bg: #369 !default;
-$bar-content-border: transparent !default;
+$bar-content-border: #E08625 !default;
 $bar-content-text: #fff !default;
 
 // Small avatar ideal for icons.
@@ -35,6 +35,14 @@ $completion-img-width: 24px !default;
 
 // Disabled items.
 $item-disabled-color: #999 !default;
+
+// Warnings (red).
+$mm-warning-color: #c00 !default;
+
+// Timer variables.
+$mm-timer-warn-color:     #f00 !default;
+$mm-timer-color:          #fff !default;
+$mm-timer-iterations:     15 !default;
 
 /**
  * Styles revert.
@@ -63,7 +71,11 @@ em {
   @extend h2;
 }
 
-// More options fro grids.
+// More options for grids.
+.col-65 {
+  @include flex(0, 0, 65%);
+  max-width: 65%;
+}
 .col-60 {
   @include flex(0, 0, 60%);
   max-width: 60%;
@@ -132,7 +144,8 @@ em {
 }
 
 // Defines a "disabled" item.
-.item.item-disabled {
+.item.item-disabled,
+.platform-android .item.item-disabled {
   color: $item-disabled-color;
 }
 
@@ -286,6 +299,24 @@ mm-navigation-bar {
   }
 }
 
+// Accessibility: text 'seen' by screen readers but not visual users.
+.accesshide {
+  position: absolute;
+  left: -10000px;
+  font-weight: normal;
+  font-size: 1em;
+}
+
+// When using .item and .row in the same element, .row's padding prevails. Use this class to keep .item's padding.
+.item.row.mm-item-padding {
+  padding: $item-padding;
+}
+
+// Red color for paragraphs.
+p.mm-warning {
+  color: $mm-warning-color;
+}
+
 // Extra attributes to ionic classes to force frames via directive 100% height.
 
 .scroll {
@@ -317,6 +348,26 @@ mm-navigation-bar {
   border-radius: 50%;
 }
 
+// Timer.
+mm-timer {
+  display: block;
+}
+
+// Style timer in items.
+.item mm-timer.mm-timer, mm-timer.mm-timer.item {
+  p, span, label {
+    color: $item-default-text;
+    font-size: $item-font-size;
+  }
+}
+
+// Create the timer warning colors. Go from $mm-timer-color to $mm-timer-warn-color.
+@for $i from 0 through $mm-timer-iterations {
+  mm-timer.mm-timer.mm-timer-timeleft-#{$i} {
+    background-color: mix($mm-timer-color, $mm-timer-warn-color, ($i / $mm-timer-iterations) * 100);
+  }
+}
+
 /**
  * This CSS uses adjacent selectors instead of general sibling (~) selectors
  * for ion radio that are broken in iOS 9 UIWebView.
@@ -332,3 +383,21 @@ mm-navigation-bar {
     /* show the checkmark icon when its checked */
     visibility: visible;
   }
+
+/**
+ * General table styling
+ */
+ table {
+  font-size:10pt;
+  margin-bottom: 10px;
+ }
+
+ th, td {
+  padding:0.5em;
+  color: #666;
+ }
+
+.generaltable th, .generaltable td {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+}

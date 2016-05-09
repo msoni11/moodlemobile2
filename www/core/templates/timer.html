@@ -1,0 +1,27 @@
+<table class="generalbox" border="0" cellpadding="0" cellspacing="0" style="width:150px;">
+    <tbody>
+        <tr>
+            <td class="generalboxcontent" bgcolor="#ffffff" width="100%">
+                <table class="generaltable" border="0" width="150" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <th class="generaltableheader" width="100%" scope="col">
+                                <label ng-if="text" class="timertext"> <strong> {{text}} </strong></label>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td id="timer" class="generaltablecell" align="center" width="100%">
+                                <div id="clock">
+                                    <div>
+                                        <strong ng-if="timeLeft > 0" class="timerval">{{ timeLeft | mmSecondsToHMS }}</strong>
+                                        <strong ng-if="timeLeft <= 0" class="timesup">{{ 'mm.core.timesup' | translate }}</strong>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>

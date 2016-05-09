@@ -443,7 +443,7 @@ angular.module('mm.core')
             preSets.siteurl = site.siteurl;
 
             // Enable text filtering.
-            data.moodlewssettingfilter = true;
+            data.moodlewssettingfilter = false;
 
             getFromCache(site, method, data, preSets).then(function(data) {
                 deferred.resolve(data);

@@ -1,0 +1,33 @@
+/** Variables **/
+$dark       : #444;
+
+
+#dps_missed_day_header {
+  float: none;
+  font-family: verdana, Arial, Helvetica, Courier, sans-serif;
+  font-size: 0.8em;
+  text-align: center;
+  font-weight: bold;
+  color: #666;
+}
+
+
+legend {
+  display: block;
+  margin-bottom: 1.42857;
+  padding: 0 0.35em;
+  font-weight: bold;
+  width: auto;
+  border: 0;
+  font-size: 11pt;
+  line-height: 1;
+  color: #666;
+}
+
+.item-radio, .item-content {
+  white-space: normal;
+}
+
+#mma_mpd_dps_attempt_form {
+  color: $dark;
+}

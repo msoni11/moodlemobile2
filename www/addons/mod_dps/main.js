@@ -10,7 +10,6 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
     $stateProvider
 
     .state('site.mod_dps', {
-        cache: false,
         url: '/mod_dps',
         params: {
             module: null,
@@ -36,6 +35,20 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
             'site': {
                 controller: 'mmaModDpsEnrolCtrl',
                 templateUrl: 'addons/mod_dps/templates/enrol.html'
+            }
+        }
+    })
+
+    .state('site.mod_dps-nonenrol', {
+        url: '/mod_dps-nonenrol',
+        params: {
+            courseid: null,
+            module: null
+        },
+        views: {
+            'site': {
+                controller: 'mmaModDpsNonEnrolledCtrl',
+                templateUrl: 'addons/mod_dps/templates/nonenrol.html'
             }
         }
     })
@@ -66,6 +79,21 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
             'site': {
                 controller: 'mmaModDpsAttemptCtrl',
                 templateUrl: 'addons/mod_dps/templates/attempt.html'
+            }
+        }
+    })
+
+    .state('site.mod_dps-stats', {
+        url: '/mod_dps-stats',
+        params: {
+            courseid: null,
+            module: null,
+            sectionid: null
+        },
+        views: {
+            'site': {
+                controller: 'mmaModDpsStatsCtrl',
+                templateUrl: 'addons/mod_dps/templates/stats.html'
             }
         }
     })
