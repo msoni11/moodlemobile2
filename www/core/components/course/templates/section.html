@@ -30,7 +30,10 @@
                         </button>
                         &nbsp;
                         <span ng-click="action($event)" ng-controller="module._controller">
-                          <strong>{{module.name}}</strong>
+                          <strong>
+                            <i class="icon ico-green" ng-click="" ng-class="module.is_active ? 'ion-checkmark-round' : ''"></i>
+                            {{module.name}}
+                          </strong>
                           <button class="pull-right button-forward">
                             <i class="icon ion-chevron-right icon-accessory"></i>
                           </button>
