@@ -24,7 +24,7 @@
 
                 <ion-list>
                     <div ng-repeat="module in section.modules" ng-show="module.visible" style="margin-top:1px;">
-                      <ion-item class="item-stable" ng-class="{active: isModuleShown(module)}">
+                      <ion-item class="item-stable" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-class="{active: isModuleShown(module)}">
                         <button ng-click="toggleModule(module)" class="button-plus">
                           <i class="icon" ng-click="" ng-class="isModuleShown(module) ? 'ion-minus' : 'ion-plus'"></i>
                         </button>
@@ -36,8 +36,9 @@
                           </button>
                         </span>
                       </ion-item>
+                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Cycle : {{module.cycle_id}}</ion-item>
                       <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily Start Date : {{module.dps_start}}</ion-item>
-                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily End Date : {{module.dps_start}}</ion-item>
+                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily End Date : {{module.dps_end}}</ion-item>
                     </div>
                 </ion-list>
 
