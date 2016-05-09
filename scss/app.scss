@@ -5,14 +5,49 @@
  */
 
 // Colors.
-$positive: #387ef5;
+$light:                           #fff !default;
+$stable:                          #eee !default;
+$positive:                        #387ef5 !default;
+$calm:                            #11c1f3 !default;
+$balanced:                        #33cd5f !default;
+$energized:                       #ffc900 !default;
+$assertive:                       #ef473a !default;
+$royal:                           #886aea !default;
+$dark:                            #c60 !default;
 
-// Setting the default button to button-outline.
-$button-default-bg: transparent;
-$button-default-text: $positive;
-$button-default-border: $positive;
-$button-default-active-bg: $positive;
-$button-default-active-border: $positive;
+//Base
+$base-color:                      #c60 !default;
+
+//font family
+$font-family-sans-serif:          "Verdana", "tahoma", "Arial", sans-serif !default;
+$font-family-light-sans-serif:    "Verdana", "tahoma", "Arial", sans-serif !default;
+$font-family-serif:               serif !default;
+$font-family-monospace:           monospace !default;
+
+//font size
+$font-size-base:                  12.96px !default;
+$font-size-large:                 12.96px !default;
+$font-size-small:                 11px !default;
+
+// Items
+$item-font-size:                  12.96px !default;
+$item-border-width:               1px !default;
+$item-padding:                    16px !default;
+
+// Links
+$link-color:                      $positive !default;
+$link-hover-color:                darken($link-color, 15%) !default;
+
+//Forms
+$input-label-color:               #666 !default;
+$input-color-placeholder:         lighten($input-label-color, 40%) !default;
+
+//Buttons
+$button-color:                    #333 !default;
+$button-border-radius:            3px !default;
+$button-border-width:             1px !default;
+$button-font-size:                12px !default;
+$button-stable-border:            #ccc !default;
 
 // The path to the font icons.
 $ionicons-font-path: "../lib/ionic/fonts" !default;
@@ -27,41 +62,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .button.active,
 .button.activated {
   box-shadow: none;
-  color: #333;
-  background-color: #eee;
-  border-color: #ccc;
+  color: #fff;
 }
 
-.button-indepth{
-  padding: .5em .5em .5em;
-  border: 1px solid #ccc;
-  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), 1px 1px 1px #fff inset;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 1px 1px 1px #fff inset;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 1px 1px 1px #fff inset;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background: #eee;
-  text-shadow: 0 1px 1px #fff;
-  font-size: 17px;
-  font-weight: 500;
-  color: #333;
-  cursor: pointer;  
-}
-
-.button:hover {
-  color: #333;
-}
-
-h1, h2, .item .item-heading, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-  color: #c60;
-}
-
-a.item {
-  color: #c60;
-}
-
-.item.item-stable {
-  color: #c60;
-  padding: 10px 0;
+.bar {
+  border-bottom: 1px solid $bar-content-border;
 }
