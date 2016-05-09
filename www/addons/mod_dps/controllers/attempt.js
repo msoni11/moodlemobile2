@@ -97,7 +97,7 @@ angular.module('mm.addons.mod_dps')
             $mmUtil.showModal('mma.mod_dps.warning', 'mma.mod_dps.warningattempt');
         } else {
             //Show confirmation only if user submit by itself.
-            promise = $mmUtil.showConfirm($translate.instant('mma.mod_dps.confirmsubmission'));
+            promise = $mmUtil.showConfirm($translate.instant('mma.mod_dps.confirmsubmit'));
             promise.then(function() {
                 return processAttempt(false).then(function(result) {
                     if (result.success) {

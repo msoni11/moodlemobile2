@@ -6,7 +6,7 @@
         </div>
         <div ng-if="attempt.success">
             <mm-timer end-time="endTime" finished="timeUp()" timer-text="{{ 'mma.mod_dps.timeleft' | translate }}"></mm-timer>
-            <form name="mma-mod_dps-attempt-form" ng-submit="finishAttempt()">
+            <form name="mma-mod_dps-attempt-form" id="mma_mpd_dps_attempt_form" ng-submit="finishAttempt()">
                 <div id="dps_missed_day_header">{{attempt.header}}</div>
                 <fieldset>
                     <legend>{{ 'mma.mod_dps.question' | translate }}</legend>
