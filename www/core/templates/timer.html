@@ -6,15 +6,15 @@
                     <tbody>
                         <tr>
                             <th class="generaltableheader" width="100%" scope="col">
-                                <label ng-if="text"> {{text}}</label>
+                                <label ng-if="text" class="timertext"> <strong> {{text}} </strong></label>
                             </th>
                         </tr>
                         <tr>
                             <td id="timer" class="generaltablecell" align="center" width="100%">
                                 <div id="clock">
                                     <div>
-                                        <span ng-if="timeLeft > 0">{{ timeLeft | mmSecondsToHMS }}</span>
-                                        <span ng-if="timeLeft <= 0">{{ 'mm.core.timesup' | translate }}</span>
+                                        <strong ng-if="timeLeft > 0" class="timerval">{{ timeLeft | mmSecondsToHMS }}</strong>
+                                        <strong ng-if="timeLeft <= 0" class="timesup">{{ 'mm.core.timesup' | translate }}</strong>
                                     </div>
                                 </div>
                             </td>
