@@ -1,6 +1,6 @@
 /** Variables **/
 $dark       : #444;
-
+$green      : #b8feb8;
 
 #dps_missed_day_header {
   float: none;
@@ -30,4 +30,40 @@ legend {
 
 #mma_mpd_dps_attempt_form {
   color: $dark;
+}
+
+/** Chart styles **/
+.dps_chart {
+  display: block;
+  width:100%;
+  height:300px;
+}
+
+.dps_chart table {
+  top: 300px !important;
+}
+
+.dps_chart .legend>div {
+  top: 300px !important;
+}
+
+.correctAnswer, .correctAnswerFinal {
+  background-color: $green;
+}
+
+.correctAnswer, .wrongAnswer {
+  padding-left: 25px;
+}
+
+.percent_header {
+  color: #666;
+}
+
+.date-diff {
+  display: inline-block;
+  padding: 10px 3px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-align: left;
+  direction: ltr;
 }

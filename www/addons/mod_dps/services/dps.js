@@ -149,9 +149,16 @@ angular.module('mm.addons.mod_dps')
      * This method can be used to get user stats for daily
      *
      */
-    self.getStats = function(cmId, refresh) {
+    self.getStats = function(cmId, dayFrom, refresh) {
         var params = {
-            cmid: cmId
+            cmid: cmId,
+            limited: 1
+        }
+        var ws_method = 'mod_dps_get_stats';
+
+        if (undefined !== dayFrom) {
+            params['startsfrom'] = dayFrom;
+            ws_method = 'mod_dps_get_weekly_stats'
         }
 
         preSets = {}
@@ -159,9 +166,9 @@ angular.module('mm.addons.mod_dps')
             preSets.getFromCache = false;
         }
 
-        return $http.get('/addons/mod_dps/json/stats.json', params, preSets).then(function(result){
-            console.log(result.data);
-            return result.data;
+        return $mmSite.read(ws_method, params, preSets).then(function(result){
+            console.log(result);
+            return result;
         });
 
     }
