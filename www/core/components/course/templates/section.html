@@ -12,7 +12,7 @@
                 </div>
             </section>
 
-            <section ng-repeat="section in sections" ng-if="section.modules.length > 0 || section.summary != ''">
+            <section class="card" ng-repeat="section in sections" ng-if="section.modules.length > 0 || section.summary != ''">
                 <!-- Title and summary are displayed when multiple sections per page. -->
                 <div class="item item-divider" ng-if="allSections">
                     <h2><mm-format-text watch="true">{{ section.name }}</mm-format-text></h2>
@@ -22,8 +22,21 @@
                     <mm-format-text class="mm-content-with-float">{{ section.summary }}</mm-format-text>
                 </div>
 
+                <a class="item item-text-wrap mm-course-module-handler {{class}}" ng-if="module.modname != 'dps'" ng-repeat="module in section.modules" ng-click="action($event)" ng-class="{'item-button-right': buttons && buttons.length > 0, 'item-media': icon, 'item-completion': module.completionstatus}" ng-controller="module._controller" title="{{ title }}">
+                    <img ng-src="{{ icon }}" alt="" role="presentation" ng-if="icon">
+                    <mm-format-text watch="true">{{ title }}</mm-format-text>
+
+                    <button ng-repeat="button in buttons" ng-hide="button.hidden" ng-click="button.action($event)" class="button button-icon" aria-label="{{ button.label | translate }}">
+                        <i class="icon positive" ng-class="{'{{button.icon}}': button.icon}"></i>
+                    </button>
+
+                    <ion-spinner ng-if="spinner"></ion-spinner>
+
+                    <mm-completion ng-if="module.completionstatus" completion="module.completionstatus" module-name="title" after-change="completionChanged"></mm-completion>
+                </a>
+                <!-- Indepth Hack -->
                 <ion-list>
-                    <div ng-repeat="module in section.modules" ng-show="module.visible" style="margin-top:1px;">
+                  <div ng-repeat="module in section.modules" ng-if="module.modname == 'dps'" ng-show="module.visible" style="margin-top:1px;">
                       <ion-item class="item-stable" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-class="{active: isModuleShown(module)}">
                         <button ng-click="toggleModule(module)" class="button-plus">
                           <i class="icon" ng-click="" ng-class="isModuleShown(module) ? 'ion-minus' : 'ion-plus'"></i>
@@ -41,8 +54,8 @@
                       </ion-item>
                       <ion-item class="item-accordion" ng-show="isModuleShown(module)">Cycle : {{module.cycle_id}}</ion-item>
                       <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily Start Date : {{module.dps_start}}</ion-item>
-                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily End Date : {{module.dps_end}}</ion-item>
-                    </div>
+                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily End Date : {{module.dps_end}}</ion>
+                  </div>
                 </ion-list>
 
                 <!-- When there is nothing in the section. -->
