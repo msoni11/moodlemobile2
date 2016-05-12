@@ -3,7 +3,7 @@
         <mm-loading hide-until="sectionLoaded" loading-padding-top="loadingPaddingTop">
             <!--<div ng-if="status.success">-->
                 <div class="item item-wrap-text item-body">
-                    {{status.message}}
+                    <mm-format-text watch="true"> {{status.message}} </mm-format-text>
                 <div>
                 <!--<a ui-sref="site.mod_dps({courseid: courseid, sectionid: sectionid, module: module})" class="button button-block">{{mma.mod_dps.continue | translate}}</a>-->
             <!--</div>-->
