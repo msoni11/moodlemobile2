@@ -85,8 +85,14 @@ angular.module('mm.addons.mod_dps')
 
         timeUpCalled = true;
         var modal = $mmUtil.showModalLoading('mm.core.sending', true);
-        processAttempt(true).finally(function() {
+        processAttempt(true).then(function(result) {
             modal.dismiss();
+            if (result.success) {
+                $state.go('site.mod_dps-stats', {
+                    courseid: courseid,
+                    module: module
+                });
+            }
         });
     };
 
