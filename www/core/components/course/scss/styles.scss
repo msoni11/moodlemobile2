@@ -34,14 +34,43 @@
   font-size: 16px;
 }
 
-.item.item-stable-even {
+.item.item-stable-even, .item.item-stable-even.active {
   background-color: $even;
 }
 
-.item.item-stable-odd {
+.item.item-stable-odd, .item.item-stable-odd.active {
   background-color: $odd;
 }
 
 .ico-green {
   color: #008000;
+}
+
+.dps_title {
+  width: 50%;
+  display: inline-block;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+.dps_info {
+  width: 50%;
+  display: inline-block;
+  white-space: normal;
+  line-height: normal;
+  vertical-align: middle;
+}
+
+.item.item-stable-odd .dps_info label {
+  background-color: #f0f0f0;
+}
+
+.item.item-stable-even .dps_info label {
+  background-color: #fafafa;
+}
+
+.dps_info .item-checkbox .checkbox {
+  left: -3px;
+  padding-left: 0px;
+  margin-left: 0px;
 }

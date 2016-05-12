@@ -52,9 +52,28 @@
                           </button>
                         </span>
                       </ion-item>
-                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Cycle : {{module.cycle_id}}</ion-item>
-                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily Start Date : {{module.dps_start}}</ion-item>
-                      <ion-item class="item-accordion" ng-show="isModuleShown(module)">Daily End Date : {{module.dps_end}}</ion>
+
+                      <ion-item class="item-accordion" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-show="isModuleShown(module)">
+                        <span class="dps_title">{{ 'mma.mod_dps.cycle' | translate}}</span><span class="dps_info">{{module.cycle_id}}</span>
+                      </ion-item>
+
+                      <ion-item class="item-accordion" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-show="isModuleShown(module)">
+                        <span class="dps_title">{{ 'mma.mod_dps.dailystart' | translate}}</span><span class="dps_info">{{module.dps_start}}</span>
+                      </ion-item>
+
+                      <ion-item class="item-accordion" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-show="isModuleShown(module)">
+                        <span class="dps_title">{{ 'mma.mod_dps.dailyend' | translate}}</span><span class="dps_info">{{module.dps_end}}</span>
+                      </ion-item>
+
+                      <ion-item class="item-accordion" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-if="module.show_bookmark" ng-show="isModuleShown(module)" ng-controller="module._controller">
+                        <span class="dps_title">{{ 'mma.mod_dps.bookmarkit' | translate}}</span><span class="dps_info">
+                          <ion-checkbox ng-model="module.dps_bookmarked" ng-change="bookmark.action($event, module.dps_bookmarked)"></ion-checkbox>
+                        </span>
+                      </ion-item>
+
+                      <ion-item class="item-accordion" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-if="module.show_archive" ng-show="isModuleShown(module)">
+                        <span class="dps_title">{{ 'mma.mod_dps.archive' | translate}}</span><span class="dps_info">{{ 'mma.mod_dps.viewarchive' | translate}}</span>
+                      </ion-item>
                   </div>
                 </ion-list>
 

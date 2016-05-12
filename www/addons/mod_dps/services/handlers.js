@@ -39,8 +39,19 @@ angular.module('mm.addons.mod_dps')
          */
         self.getController = function(module, courseid, sectionid) {
             return function($scope) {
+                var bookmark;
+                bookmark = {
+                    action: function(e, state) {
+                        if (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }
+                        $state.go('site.mod_dps-bookmark', {module: module, courseid: courseid, sectionid: sectionid, state: state});
+                    }
+                };
                 $scope.title = module.name;
                 $scope.icon = $mmCourse.getModuleIconSrc('dps');
+                $scope.bookmark = bookmark;
                 $scope.action = function(e) {
                     if (e) {
                         e.preventDefault();

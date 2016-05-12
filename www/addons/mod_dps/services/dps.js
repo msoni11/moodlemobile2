@@ -173,5 +173,19 @@ angular.module('mm.addons.mod_dps')
 
     }
 
+    /**
+     * This method can be used to set cycle bookmark.
+     */
+    self.setBookmark = function(cmId, bookmarkIt) {
+        console.log(bookmarkIt);
+        var params = {
+            cmid: cmId,
+            bookmarkit: bookmarkIt ? 1 : 0
+        }
+
+        return $mmSite.read('mod_dps_create_bookmark', params).then(function(result) {
+            return result;
+        });
+    }
     return self;
 });

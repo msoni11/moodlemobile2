@@ -12,5 +12,11 @@
     "question": "Question",
     "warningattempt": "You need to make a selection from the Daily INDEPTH excercise page before submitting your answer. Select the Continue button to return to the page.",
     "dailyattempt": "Daily Attempt",
-    "warning": "Warning!"
+    "warning": "Warning!",
+    "cycle": "Cycle",
+    "dailystart": "Daily Start Date",
+    "dailyend": "Daily End Date",
+    "bookmarkit": "bookmark it!",
+    "archive": "Archive",
+    "viewarchive": "View Archive"
 }

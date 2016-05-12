@@ -97,6 +97,22 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
             }
         }
     })
+
+    .state('site.mod_dps-bookmark', {
+        url: '/mod_dps-bookmark',
+        params: {
+            courseid: null,
+            module: null,
+            sectionid: null,
+            state: null
+        },
+        views: {
+            'site': {
+                controller: 'mmaModDpsBookmarkCtrl',
+                templateUrl: 'addons/mod_dps/templates/bookmark.html'
+            }
+        }
+    })
 })
 
 .config(function($mmCourseDelegateProvider, $mmContentLinksDelegateProvider) {
