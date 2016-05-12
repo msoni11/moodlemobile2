@@ -158,8 +158,8 @@ angular.module('mm.core')
 
         return $mmLang.getCurrentLanguage().then(function(language) {
             // Match the current language
-            var currentLangRe = new RegExp('<(?:lang|sxyz)[^>]+lang="' + language + '"[^>]*>(.*?)<\/(?:lang|sxyz)>', 'g'),
-                anyLangRE = /<(?:lang|sxyz)[^>]+lang="[a-zA-Z0-9_-]+"[^>]*>(.*?)<\/(?:lang|sxyz)>/g;
+            var currentLangRe = new RegExp('<(?:lang|sxyz)[^>]+lang="' + language + '"[^>]*>(.|[\\r\\n\\s\\S]*?)<\/(?:lang|sxyz)>', 'g'),
+                anyLangRE = /<(?:lang|sxyz)[^>]+lang="[a-zA-Z0-9_-]+"[^>]*>(.|[\r\n\s\S]*?)<\/(?:lang|sxyz)>/g;
 
             if (!text.match(currentLangRe)) {
                 // Current lang not found. Try to find the first language.
