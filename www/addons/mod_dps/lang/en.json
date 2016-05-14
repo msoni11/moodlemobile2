@@ -9,6 +9,7 @@
     "submit": "Submit",
     "confirmsubmit": "Are you sure you want to submit answer ?",
     "timeleft": "Time Remaining",
+    "timesup": "Time is up!",
     "question": "Question",
     "warningattempt": "You need to make a selection from the Daily INDEPTH excercise page before submitting your answer. Select the Continue button to return to the page.",
     "dailyattempt": "Daily Attempt",
@@ -16,7 +17,7 @@
     "cycle": "Cycle",
     "dailystart": "Daily Start Date",
     "dailyend": "Daily End Date",
-    "bookmarkit": "bookmark it!",
+    "bookmarkit": "Bookmark it!",
     "archive": "Archive",
     "viewarchive": "View Archive"
 }
