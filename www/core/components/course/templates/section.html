@@ -45,7 +45,7 @@
                         <span ng-click="action($event)" ng-controller="module._controller">
                           <strong>
                             <i class="icon ico-green" ng-click="" ng-class="module.is_active ? 'ion-checkmark-round' : ''"></i>
-                            {{module.name}}
+                            <mm-format-text>{{module.name}}</mm-format-text>
                           </strong>
                           <button class="pull-right button-forward">
                             <i class="icon ion-chevron-right icon-accessory"></i>
