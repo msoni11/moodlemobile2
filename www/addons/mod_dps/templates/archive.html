@@ -1,0 +1,19 @@
+<ion-view>
+    <ion-nav-title>View Archive</ion-nav-title>
+    <ion-content>
+      <ion-refresher pulling-text="{{ 'mm.core.pulltorefresh' | translate }}" ng-if="sectionLoaded" on-refresh="doRefresh()">
+      </ion-refresher>
+      <mm-loading hide-until="sectionLoaded" loading-padding-top="loadingPaddingTop">
+        <div id="viewarchive">
+          <div class="row header">
+            <div class="col">Question</div>
+            <div class="col col-20">Day shown</div>
+          </div>
+          <div class="row" ng-repeat="question in result.question_data">
+            <div class="col" ng-click="showDetails(question.question_id)"><mm-format-text clean="true" shorten="15%">{{question.question_text}}</mm-format-text></div>
+            <div class="col col-20 dayshown">{{question.show_day}}</div>
+          </div>
+        </div>
+      </mm-loading>
+    </ion-content>
+</ion-view>

@@ -71,8 +71,8 @@
                         </span>
                       </ion-item>
 
-                      <ion-item class="item-accordion" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-if="module.show_archive" ng-show="isModuleShown(module)">
-                        <span class="dps_title">{{ 'mma.mod_dps.archive' | translate}}</span><span class="dps_info">{{ 'mma.mod_dps.viewarchive' | translate}}</span>
+                      <ion-item class="item-accordion" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-if="module.show_archive" ng-show="isModuleShown(module)" ng-controller="module._controller">
+                        <span class="dps_title">{{ 'mma.mod_dps.archive' | translate}}</span><span class="dps_info viewarchive" ng-click="archive.action($event)">{{ 'mma.mod_dps.viewarchive' | translate}}</span>
                       </ion-item>
                   </div>
                 </ion-list>

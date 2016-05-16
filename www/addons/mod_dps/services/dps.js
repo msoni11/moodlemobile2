@@ -185,5 +185,74 @@ angular.module('mm.addons.mod_dps')
             return result;
         });
     }
+
+    /**
+     * This method can be used to get archived questions.
+     *
+     * @module mm.addons.mod_dps
+     * @name $mmaModDps#getArchiveQuestions
+     * @param {Number} cmId Course Module ID
+     * @param {Boolean} [refresh] True when we should not get the value from the cache.
+     */
+    self.getArchivedQuestions = function(cmId, refresh) {
+        var params = {
+            cmid: cmId
+        },
+        preSets = {};
+
+        if (refresh) {
+            preSets.getFromCache = false;
+        }
+
+        return $mmSite.read('mod_dps_get_archive', params, preSets);
+    }
+
+   /**
+     * This method can be used to get details of archived questions.
+     *
+     * @module mm.addons.mod_dps
+     * @name $mmaModDps#getQuestionDetails
+     * @param {Number} qId Question ID
+     * @param {Number} cmId Course Module ID
+     * @param {Boolean} [refresh] True when we should not get the value from the cache.
+     */
+    self.getQuestionDetails = function(qId, cmId, refresh) {
+        var params = {
+            cmid: cmId,
+            questionId: qId
+        },
+        preSets = {};
+
+        if (refresh) {
+            preSets.getFromCache = false;
+        }
+
+        return $mmSite.read('mod_dps_get_archive_details', params, preSets);
+    }
+
+   /**
+     * This method can be used to add/remove a question as favorite.
+     *
+     * @module mm.addons.mod_dps
+     * @name $mmaModDps#markFavorite
+     * @param {Number} qId Question ID
+     * @param {Number} cmId Course Module ID
+     * @param {Boolean} [favorite] True if mark to favorite, false if remove from favorite.
+     */
+    self.markFavorite = function(qId, cmId, favorite, refresh) {
+        var params = {
+            cmid: cmId,
+            questionId: qId,
+            favorite: favorite ? 1 : 0
+        },
+        preSets = {};
+
+        if (refresh) {
+            preSets.getFromCache = false;
+        }
+
+        return $mmSite.read('mod_dps_create_favorite', params, preSets);
+    }
+
     return self;
 });

@@ -92,6 +92,10 @@ angular.module('mm.addons.mod_dps')
                     courseid: courseid,
                     module: module
                 });
+            } else {
+                // We've received a false condition. Just display message
+                // returned from server.
+                $scope.attempt = result;
             }
         });
     };
@@ -102,7 +106,7 @@ angular.module('mm.addons.mod_dps')
         if (!$scope.att.choice) {
             $mmUtil.showModal('mma.mod_dps.warning', 'mma.mod_dps.warningattempt');
         } else {
-            //Show confirmation only if user submit by itself.
+            //Show confirmation only if user submit by himself.
             promise = $mmUtil.showConfirm($translate.instant('mma.mod_dps.confirmsubmit'));
             promise.then(function() {
                 return processAttempt(false).then(function(result) {
@@ -111,6 +115,10 @@ angular.module('mm.addons.mod_dps')
                             courseid: courseid,
                             module: module
                         });
+                    }  else {
+                        // We've received a false condition. Just display message
+                        // returned from server.
+                        $scope.attempt = result;
                     }
                 }).catch(function(message) {
                 });

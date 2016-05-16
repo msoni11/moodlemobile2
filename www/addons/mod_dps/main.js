@@ -113,6 +113,37 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
             }
         }
     })
+
+    .state('site.mod_dps-archive', {
+        url: '/mod_dps-archive',
+        params: {
+            courseid: null,
+            module: null,
+            sectionid: null
+        },
+        views: {
+            'site': {
+                controller: 'mmaModDpsArchiveCtrl',
+                templateUrl: 'addons/mod_dps/templates/archive.html'
+            }
+        }
+    })
+
+    .state('site.mod_dps-questiondetails', {
+        url: '/mod_dps-questiondetails',
+        params: {
+            qId: null,
+            module: null,
+            courseid: null,
+            sectionid: null
+        },
+        views: {
+            'site': {
+                controller: 'mmaModDpsQuestionDetailsCtrl',
+                templateUrl: 'addons/mod_dps/templates/questiondetails.html'
+            }
+        }
+    })
 })
 
 .config(function($mmCourseDelegateProvider, $mmContentLinksDelegateProvider) {

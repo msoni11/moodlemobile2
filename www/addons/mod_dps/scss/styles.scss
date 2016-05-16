@@ -1,5 +1,5 @@
 /** Variables **/
-$dark       : #444;
+$lightdark  : #444;
 $green      : #b8feb8;
 $darker     : #666;
 
@@ -30,7 +30,7 @@ legend {
 }
 
 #mma_mpd_dps_attempt_form {
-  color: $dark;
+  color: $lightdark;
 }
 
 /** Chart styles **/
@@ -86,4 +86,28 @@ legend {
 
 .day-range {
     text-decoration: underline;
+}
+
+/** Archive Layout **/
+#viewarchive .header .col {
+  color: #333;
+  background: #eee;
+  border-bottom: 1px solid #d5d5d5;
+  -moz-box-shadow: 1px 1px 1px #fafafa inset;
+  -webkit-box-shadow: 1px 1px 1px #fafafa inset;
+  box-shadow: 1px 1px 1px #fafafa inset;
+  text-shadow: 0 1px 0 #fff;
+  font-weight: bold;
+}
+
+#viewarchive .col {
+  border: 1px solid #ddd;
+}
+
+#viewarchive .dayshown {
+  color: #000;
+}
+
+span.viewarchive {
+  color: $dark;
 }

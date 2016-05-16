@@ -2,7 +2,7 @@
     <ion-nav-title><mm-format-text watch=true>{{title}}</mm-format-text></ion-nav-title>
     <ion-content padding="true">
         <div ng-if="!attempt.success">
-            <mma-mod-dps-status status="attempt.message" courseid="courseid" sectionid="sectionid" module="module" watch="true">
+            <mma-mod-dps-status status="attempt.message" courseid="courseid" sectionid="sectionid" watch="true">
         </div>
         <div ng-if="attempt.success">
             <mm-timer end-time="endTime" finished="timeUp()" timer-text="{{ 'mma.mod_dps.timeleft' | translate }}"></mm-timer>

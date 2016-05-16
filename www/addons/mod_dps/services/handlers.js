@@ -39,7 +39,7 @@ angular.module('mm.addons.mod_dps')
          */
         self.getController = function(module, courseid, sectionid) {
             return function($scope) {
-                var bookmark;
+                var bookmark, archive;
                 bookmark = {
                     action: function(e, state) {
                         if (e) {
@@ -49,9 +49,19 @@ angular.module('mm.addons.mod_dps')
                         $state.go('site.mod_dps-bookmark', {module: module, courseid: courseid, sectionid: sectionid, state: state});
                     }
                 };
+                archive = {
+                    action: function(e) {
+                        if (e) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                        }
+                        $state.go('site.mod_dps-archive', {module: module, courseid: courseid, sectionid: sectionid});
+                    }
+                }
                 $scope.title = module.name;
                 $scope.icon = $mmCourse.getModuleIconSrc('dps');
                 $scope.bookmark = bookmark;
+                $scope.archive = archive;
                 $scope.action = function(e) {
                     if (e) {
                         e.preventDefault();

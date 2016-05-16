@@ -1,0 +1,13 @@
+<ion-view>
+    <ion-content padding="true">
+        <mm-loading hide-until="sectionLoaded" loading-padding-top="loadingPaddingTop">
+            <div ng-if="result.success">
+                <div mma-mod-dps-favorite="markFavorite(favorite)" favorite="result.question_flagged"></div>
+                <mm-format-text watch="true">{{result.question}}</mm-format-text>
+                <a ui-sref="site.mod_dps-archive({courseid: courseid, module: module, sectionid: sectionid})" class="button ">
+                    Return to archive
+                </a>
+            </div>
+        </mm-loading>
+    </ion-content>
+</ion-view>
