@@ -1,6 +1,8 @@
-<div ng-if="!favorite">
-    <a ng-click="markfav(true)">Add to favorite</a>
-</div>
-<div ng-if="favorite">
-    <a ng-click="markfav(false)">Remove from favorite</a>
-</div>
+<mm-loading hide-until="actionTriggered" loading-padding-top="loadingPaddingTop">
+    <div ng-if="!favorite">
+        <a ng-click="markfav(true)">Add to favorite</a>
+    </div>
+    <div ng-if="favorite">
+        <a ng-click="markfav(false)">Remove from favorite</a>
+    </div>
+</mm-loading>

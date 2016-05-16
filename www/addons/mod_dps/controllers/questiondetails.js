@@ -29,7 +29,7 @@ angular.module('mm.addons.mod_dps')
     }
 
     $scope.markFavorite = function(favorite) {
-        $mmaModDps.markFavorite(qId, module.id, favorite, true).then(function(result){
+        return $mmaModDps.markFavorite(qId, module.id, favorite, true).then(function(result){
             // Change the flagged value on success.
             $scope.result.question_flagged =  favorite;
         })

@@ -14,10 +14,13 @@ angular.module('mm.addons.mod_dps')
         },
         templateUrl: 'addons/mod_dps/templates/favorite.html',
         controller: function($scope) {
-            console.log($scope);
+            $scope.actionTriggered  = true;
             $scope.markfav = function(favorite) {
-                console.log('fave : ' + favorite);
-                $scope.mmaModDpsFavorite({favorite: favorite});
+                $scope.actionTriggered = false;
+                var promise = $scope.mmaModDpsFavorite({favorite: favorite});
+                promise.finally(function() {
+                    $scope.actionTriggered  = true;
+                })
             }
 
             $scope.$watch('favorite', function(v) {

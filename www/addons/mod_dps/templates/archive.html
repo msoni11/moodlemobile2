@@ -10,7 +10,7 @@
             <div class="col col-20">Day shown</div>
           </div>
           <div class="row" ng-repeat="question in result.question_data">
-            <div class="col" ng-click="showDetails(question.question_id)"><mm-format-text clean="true" shorten="15%">{{question.question_text}}</mm-format-text></div>
+            <div class="col" ng-click="showDetails(question.question_id)" ng-class="{'strong': question.question_flagged}"><mm-format-text clean="true" shorten="15%">{{question.question_text}}</mm-format-text></div>
             <div class="col col-20 dayshown">{{question.show_day}}</div>
           </div>
         </div>
