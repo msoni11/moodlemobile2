@@ -73,8 +73,8 @@ angular.module('mm.core.login', [])
 
     .state('mm_login.reconnect', {
         url: '/reconnect',
-        templateUrl: 'core/components/login/templates/reconnect.html',
-        controller: 'mmLoginReconnectCtrl',
+        templateUrl: 'core/components/login/templates/credentials.html',
+        controller: 'mmLoginCredentialsCtrl',
         cache: false,
         params: {
             siteurl: '',
@@ -168,7 +168,7 @@ angular.module('mm.core.login', [])
                     var info = $mmSite.getInfo();
                     if (typeof(info) !== 'undefined' && typeof(info.username) !== 'undefined') {
                         $ionicHistory.nextViewOptions({disableBack: true});
-                        $state.go('mm_login.credentials',
+                        $state.go('mm_login.reconnect',
                                         {siteurl: result.siteurl});
                     }
                 }
