@@ -18,6 +18,8 @@ angular.module('mm.addons.mod_dps')
     $scope.module = module;
     $scope.sectionid = sectionid;
 
+    $scope.sectionLoaded = false;
+
     function setBookmark() {
         return $mmaModDps.setBookmark(module.id, checked).then(function(result) {
             $scope.result = result;
@@ -25,6 +27,6 @@ angular.module('mm.addons.mod_dps')
     }
 
     setBookmark().finally(function(){
-       console.log('finally');
+       $scope.sectionLoaded = true;
     })
 })
