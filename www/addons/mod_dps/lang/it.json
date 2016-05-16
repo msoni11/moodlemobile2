@@ -19,5 +19,8 @@
     "dailyend": "Data di fine",
     "bookmarkit": "Segnalibro",
     "archive": "Archivio",
-    "viewarchive": "Vedi l’archivio"
+    "viewarchive": "Vedi l’archivio",
+    "markfavorite": "Aggiungi ai preferite",
+    "removefavorite": "Cancella dai preferite",
+    "returntoarchive": "Ritorna al archivio"
 }

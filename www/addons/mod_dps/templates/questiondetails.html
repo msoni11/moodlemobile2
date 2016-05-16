@@ -5,7 +5,7 @@
                 <div mma-mod-dps-favorite="markFavorite(favorite)" favorite="result.question_flagged"></div>
                 <mm-format-text watch="true">{{result.question}}</mm-format-text>
                 <a ui-sref="site.mod_dps-archive({courseid: courseid, module: module, sectionid: sectionid})" class="button ">
-                    Return to archive
+                    {{ 'mma.mod_dps.returntoarchive' | translate }}
                 </a>
             </div>
         </mm-loading>

@@ -19,5 +19,8 @@
     "dailyend": "خاتمۀ پرسش‌ها",
     "bookmarkit": "نشانه‌گذاری کنید",
     "archive": "آرشیو",
-    "viewarchive": "مشاهدۀ آرشیو"
+    "viewarchive": "مشاهدۀ آرشیو",
+    "markfavorite": "اضافه به پرسش‌های منتخب",
+    "removefavorite": "حذف از پرسش‌های منتخب",
+    "returntoarchive": "بازگشت به آرشیو"
 }

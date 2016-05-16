@@ -19,5 +19,8 @@
     "dailyend": "Fin des Daily Indepth",
     "bookmarkit": "Ajouter aux favoris!",
     "archive": "Archives",
-    "viewarchive": "voir archives"
+    "viewarchive": "voir archives",
+    "markfavorite": "Ajouter aux questions préférées",
+    "removefavorite": "Supprimer des questions préférées",
+    "returntoarchive": "Revenir au archives"
 }

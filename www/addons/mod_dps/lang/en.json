@@ -19,5 +19,8 @@
     "dailyend": "Daily End Date",
     "bookmarkit": "Bookmark it!",
     "archive": "Archive",
-    "viewarchive": "View Archive"
+    "viewarchive": "View Archive",
+    "markfavorite": "Add to favorites",
+    "removefavorite": "Remove from favorites",
+    "returntoarchive": "Return to Archive"
 }
