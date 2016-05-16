@@ -117,7 +117,7 @@ angular.module('mm.core.login', [])
 
         if (toState.name.substr(0, 8) === 'redirect' || toState.name.substr(0, 15) === 'mm_contentlinks') {
             return;
-        } else if ((toState.name.substr(0, 8) !== 'mm_login' || toState.name === 'mm_login.credentials') && !$mmSite.isLoggedIn()) {
+        } else if ((toState.name.substr(0, 8) !== 'mm_login' || toState.name === 'mm_login.reconnect') && !$mmSite.isLoggedIn()) {
             // We are not logged in.
             event.preventDefault();
             $log.debug('Redirect to login page, request was: ' + toState.name);
@@ -127,7 +127,7 @@ angular.module('mm.core.login', [])
                 disableBack: true
             });
             $state.transitionTo('mm_login.init');
-        } else if (toState.name.substr(0, 8) === 'mm_login' && toState.name !== 'mm_login.credentials' && $mmSite.isLoggedIn()) {
+        } else if (toState.name.substr(0, 8) === 'mm_login' && toState.name !== 'mm_login.reconnect' && $mmSite.isLoggedIn()) {
             // We are logged in and requested the login page.
             event.preventDefault();
             $log.debug('Redirect to course page, request was: ' + toState.name);
