@@ -17,10 +17,10 @@
                 <a class="item" ui-sref="site.mm_course({courseid: course.id})" title="{{course.fullname}}">
                     <h2><mm-format-text watch="true">{{course.fullname}}</mm-format-text></h2>
                 </a>
-                <div class="item item-text-wrap" ng-show="course.summary">
+                <div id="module_content" class="item item-text-wrap" ng-show="course.summary">
                     <p>
                         <summary>
-                            <mm-format-text class="mm-content-with-float" watch="true" expand-on-click="true">{{course.summary}}</mm-format-text>
+                            <mm-format-text class="mm-content-with-float" watch="true" expand-on-click="true">{{course.summary | mmFormatLinks }}</mm-format-text>
                         </summary>
                     </p>
                 </div>
