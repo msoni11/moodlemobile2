@@ -26,8 +26,6 @@ angular.module('mm.addons.mod_dps')
                         xaxis: {
                             mode: "time",
                             ticks: scope[attrs.chartTicks],
-                            labelWidth: 50
-
                         },
                         yaxis: {
                             min: 0,
@@ -40,31 +38,21 @@ angular.module('mm.addons.mod_dps')
                             hoverable: true,
                             mouseActiveRadius: 10
                         },
-                        legend: {
-                            //noColumns: 6,
-                            //container: "#placeholder-legend"
-                            label: {
-                                formatter: function (label, series) {
-                                    console.log(label);
-                                }
-                            }
-                        },
-                colors: ["#ff0000", "#dba255", "#33ccff", "#ffff00", "#33ccff", "#00FF26", "#00FF26"]
+                        colors: ["#ff0000", "#dba255", "#33ccff", "#ffff00", "#33ccff", "#00FF26", "#00FF26"]
 
                     }
             var data = scope[attrs.chartData];
 
-            //Change graph on data update
-            scope.$watch('data', function(v) {
-                if (!chart) {
-                    chart = $.plot(elem, v, options);
-                    //elem.show();
-                } else {
-                    chart.setData(v);
-                    chart.setupGrid();
-                    chart.draw();
+            // If directive loads after we retrieve data, it works fine
+            // If directive loads before data retrieval, graph layout got disturbed.
+            // The only solution for me now to re-initiate graph everytime a change occured.
+            scope.$watchGroup(['data', 'ticks'], function(newVals, oldVals, scope) {
+                options['xaxis']['ticks'] = newVals[1];
+                if (chart) {
+                    chart.shutdown();
                 }
-            })
+                chart = $.plot(elem, newVals[0], options);
+            });
         }
     }
 });

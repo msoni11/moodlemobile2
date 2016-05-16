@@ -1,17 +1,19 @@
 <ion-view>
     <ion-nav-title>Score & Statistics</ion-nav-title>
     <ion-content padding=true>
-        <!-- Add/Remove favorites -->
+        <div ng-if="loaded">
+            <!-- Add/Remove favorites -->
 
-        <!-- Display question content here -->
-        <mm-format-text class="mm-content-with-float" watch=true>{{question}}</mm-format-text>
+            <!-- Display question content here -->
+            <mm-format-text class="mm-content-with-float" watch=true>{{question}}</mm-format-text>
 
-        <!-- Display date series here for mobile only -->
-        <div ng-repeat="week in weekdays" class="date-diff" ng-click="getNextData(week.week_first_day)">
-            <mm-format-text watch=true>{{week.week}}</mm-format-text>
+            <!-- Display date series here for mobile only -->
+            <div ng-repeat="week in weekdays" class="date-diff" ng-click="getNextData(week.week_first_day)">
+                <mm-format-text class="day-range" watch=true>{{week.week}}</mm-format-text> | 
+            </div>
+
+            <!-- Display graph content here -->
+            <mma-mod-dps-chart class="dps_chart" chart-data="data" chart-ticks="ticks"></mma-mod-dps-chart>
         </div>
-
-        <!-- Display graph content here -->
-        <mma-mod-dps-chart class="dps_chart" chart-data="data" chart-ticks="ticks"></mma-mod-dps-chart>
     </ion-content>
 </ion-view>

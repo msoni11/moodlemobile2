@@ -1,6 +1,7 @@
 /** Variables **/
 $dark       : #444;
 $green      : #b8feb8;
+$darker     : #666;
 
 #dps_missed_day_header {
   float: none;
@@ -21,7 +22,7 @@ legend {
   border: 0;
   font-size: 11pt;
   line-height: 1;
-  color: #666;
+  color: $darker;
 }
 
 .item-radio, .item-content {
@@ -39,13 +40,24 @@ legend {
   height:300px;
 }
 
-.dps_chart table {
-  top: 300px !important;
+.dps_chart div.xAxis div.tickLabel {
+  transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  margin-top: 1.6em;
+  max-width: 75px !important;
 }
 
-.dps_chart .legend>div {
-  top: 300px !important;
+.dps_chart table, .dps_chart .legend>div  {
+  top: 325px !important;
 }
+
+.dps_chart .legend table {
+  left: 0px;
+}
+
 
 .correctAnswer, .correctAnswerFinal {
   background-color: $green;
@@ -55,15 +67,23 @@ legend {
   padding-left: 25px;
 }
 
+.wrongAnswerFinal {
+  background-color: #FFC3CE;
+}
+
 .percent_header {
-  color: #666;
+  color: $darker;
 }
 
 .date-diff {
   display: inline-block;
   padding: 10px 3px;
   cursor: pointer;
-  text-decoration: underline;
   text-align: left;
   direction: ltr;
+  color: $darker;
+}
+
+.day-range {
+    text-decoration: underline;
 }

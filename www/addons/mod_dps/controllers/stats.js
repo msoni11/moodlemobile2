@@ -11,6 +11,7 @@ angular.module('mm.addons.mod_dps')
     var module = $stateParams.module,
         courseid = $stateParams.courseid,
         sectionid = $stateParams.sectionid;
+        $scope.loaded = false;
 
     function getStats() {
         return $mmaModDps.getStats(module.id).then(function(result){
@@ -25,10 +26,11 @@ angular.module('mm.addons.mod_dps')
 
     $scope.getNextData = function(dayFrom) {
         return $mmaModDps.getStats(module.id, dayFrom).then(function(result){
+            $scope.loaded = false;
             if (result.success) {
+                $scope.loaded = true;
                 $scope.data = formatData(result.chartdata.misseddata);
                 $scope.ticks = result.chartdata.ticktitles;
-                $scope.weekdays = result.chartdata.datesplits;
             }
         })
     }
@@ -48,6 +50,6 @@ angular.module('mm.addons.mod_dps')
     }
 
     getStats().finally(function(){
-        console.log('Stats Printed');
+        $scope.loaded = true;
     })
 })

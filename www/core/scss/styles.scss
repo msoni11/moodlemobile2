@@ -384,20 +384,102 @@ mm-timer {
     visibility: visible;
   }
 
-/**
- * General table styling
- */
- table {
+/** Buttons **/
+
+.button-indepth {
+  padding: .5em .5em .5em;
+  border: 1px solid #ccc;
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2), 1px 1px 1px #fff inset;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 1px 1px 1px #fff inset;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 1px 1px 1px #fff inset;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background: #eee url(../core/img/bar1.gif);
+  text-shadow: 0 1px 1px #fff;
+  font-size: .90em;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  line-height: normal;
+  min-height: 40px;
+}
+
+
+.button-indepth:active {
+  -moz-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3) inset, 0 1px 1px rgba(0, 0, 0, 0.15) inset, 1px 0px 1px rgba(0, 0, 0, 0.15) inset;
+  -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3) inset, 0 1px 1px rgba(0, 0, 0, 0.15) inset, 1px 0px 1px rgba(0, 0, 0, 0.15) inset;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3) inset, 0 1px 1px rgba(0, 0, 0, 0.15) inset, 1px 0px 1px rgba(0, 0, 0, 0.15) inset;
+  color: #000;
+}
+
+/** Header **/
+header.siteheader img {
+  width: 100%;
+  display: block;
+  border-bottom: 2px solid $bar-content-border;
+}
+
+header.siteheader {
+  margin-bottom: 10px;
+}
+
+.block-in {
+  margin: 0 2px;
+  color: #666;
+}
+
+.block-in .header {
+  background: #5F96C5 url(../core/img/block-header-flat.png) repeat-x 0 0;
+  padding: 4px 5px 5px;
+  background-repeat: repeat;
+  border-radius: 5px 5px 0 0;
+}
+
+.block-in .content {
+  background: none !important;
+  background-color: #e1e2e2 !important;
+  border-radius: 5px;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.3);
+  padding: 10px 5px;
+}
+
+.block-in .title h5 {
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #fff;
+}
+
+.block-in input[type="text"], .block-in input[type="password"] {
+ height: 2em;
+ border: 1px solid #ccc;
+ padding: 2px 5px;
+ width: 100%;
+ margin-bottom: 0.5em; 
+}
+
+/** General table styling **/
+table {
   font-size:10pt;
   margin-bottom: 10px;
- }
+  width: 100%;
+}
 
- th, td {
+th, td {
   padding:0.5em;
   color: #666;
- }
+}
 
 .generaltable th, .generaltable td {
-    border: 1px solid #ddd;
-    border-collapse: collapse;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
+  background-color: #fafafa;
+}
+
+/** bars **/
+.bar-indepth {
+  background: #369;
+  color: $light;
 }
