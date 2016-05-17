@@ -3,10 +3,10 @@
         <mm-loading hide-until="sectionLoaded" loading-padding-top="loadingPaddingTop">
             <div ng-if="result.success">
                 <div mma-mod-dps-favorite="markFavorite(favorite)" favorite="result.question_flagged"></div>
-                <mm-format-text watch="true">{{result.question}}</mm-format-text>
-                <a ui-sref="site.mod_dps-archive({courseid: courseid, module: module, sectionid: sectionid})" class="button ">
-                    {{ 'mma.mod_dps.returntoarchive' | translate }}
-                </a>
+                <mm-format-text class="mm-content-with-float" watch="true">{{result.question}}</mm-format-text>
+                <div class="btn-group">
+                    <button ui-sref="site.mod_dps-archive({courseid: courseid, module: module, sectionid: sectionid})" class="button button-indepth">{{ 'mma.mod_dps.returntoarchive' | translate }}</button>
+                </div>
             </div>
         </mm-loading>
     </ion-content>

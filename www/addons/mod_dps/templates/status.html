@@ -4,5 +4,7 @@
             <mm-format-text class="mm-content-with-float" watch="true">{{ status }}</mm-format-text>
         </div>
     </div>
-    <button ui-sref="site.mm_course-section({cid: courseid, sectionid: sectionid})" class="button button-block button-indepth">{{ 'mma.mod_dps.returntodaily' | translate }}</button>
+    <div class="btn-group">
+        <button ui-sref="site.mm_course-section({cid: courseid, sectionid: sectionid})" class="button button-indepth">{{ 'mma.mod_dps.returntodaily' | translate }}</button>
+    </div>
 </mm-loading>
