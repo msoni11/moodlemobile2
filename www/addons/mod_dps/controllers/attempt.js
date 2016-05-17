@@ -8,7 +8,7 @@ angular.module('mm.addons.mod_dps')
  */
 
 .controller('mmaModDpsAttemptCtrl', function($scope, $stateParams, $mmaModDps, $mmaDpsHelper, $mmUtil, $q, $log, 
-    $translate, $state) {
+    $translate, $state, $ionicHistory) {
 
     $log = $log.getInstance("mmaModDpsAttemptCtrl");
 
@@ -25,6 +25,43 @@ angular.module('mm.addons.mod_dps')
     $scope.att = {'choice': 0}
 
     $scope.title = $translate.instant('mma.mod_dps.dailyattempt');
+
+    $scope.finishAttempt = function() {
+        finishAttempt();
+    }
+
+    // Dps time has finished.
+    $scope.timeUp = function() {
+        if (timeUpCalled) {
+            return;
+        }
+
+        timeUpCalled = true;
+        var modal = $mmUtil.showModalLoading('mm.core.sending', true);
+        processAttempt(true).then(function(result) {
+            modal.dismiss();
+            if (result.success) {
+                $state.go('site.mod_dps-stats', {
+                    courseid: courseid,
+                    module: module
+                });
+            } else {
+                // We've received a false condition. Just display message
+                // returned from server.
+                $scope.attempt = result;
+            }
+        });
+    };
+
+    $scope.gotoindex = function() {
+        //clear cache first so that ionic forget all back histories
+        $ionicHistory.clearCache();
+        $state.go('site.mm_course-section',{
+            'cid': courseid,
+            'sectionid': sectionid
+        });
+    }
+
     function startAttempt(refresh) {
         return $mmaModDps.startAttempt(module.id, refresh).then(function(result) {
             $scope.attempt = result;
@@ -72,33 +109,6 @@ angular.module('mm.addons.mod_dps')
             }
         });
     }
-
-    $scope.finishAttempt = function() {
-        finishAttempt();
-    }
-
-    // Dps time has finished.
-    $scope.timeUp = function() {
-        if (timeUpCalled) {
-            return;
-        }
-
-        timeUpCalled = true;
-        var modal = $mmUtil.showModalLoading('mm.core.sending', true);
-        processAttempt(true).then(function(result) {
-            modal.dismiss();
-            if (result.success) {
-                $state.go('site.mod_dps-stats', {
-                    courseid: courseid,
-                    module: module
-                });
-            } else {
-                // We've received a false condition. Just display message
-                // returned from server.
-                $scope.attempt = result;
-            }
-        });
-    };
 
     // Finish an attempt, either by timeup or because the user clicked to finish it.
     function finishAttempt() {

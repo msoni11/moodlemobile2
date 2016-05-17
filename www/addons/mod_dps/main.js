@@ -86,6 +86,7 @@ angular.module('mm.addons.mod_dps', ['mm.core'])
     .state('site.mod_dps-stats', {
         url: '/mod_dps-stats',
         params: {
+            qId: null,
             courseid: null,
             module: null,
             sectionid: null

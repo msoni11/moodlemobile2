@@ -1,6 +1,6 @@
-<ion-view>
+<ion-view cache-view="false">
     <ion-nav-title><mm-format-text watch=true>{{title}}</mm-format-text></ion-nav-title>
-    <ion-content delegate-handle="mmSectionScroll" padding="true">
+    <ion-content padding="true">
         <ion-refresher pulling-text="{{ 'mm.core.pulltorefresh' | translate }}" ng-if="sectionLoaded" on-refresh="doRefresh()"></ion-refresher>
         <mm-loading hide-until="sectionLoaded" loading-padding-top="loadingPaddingTop">
             <div ng-if="!status.dps.isActive">

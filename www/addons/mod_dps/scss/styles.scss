@@ -10,6 +10,7 @@ $darker     : #666;
   text-align: center;
   font-weight: bold;
   color: #666;
+  margin: 5px 0;
 }
 
 
@@ -23,6 +24,11 @@ legend {
   font-size: 11pt;
   line-height: 1;
   color: $darker;
+}
+
+.legendColorBox {
+  vertical-align: middle;
+  width: 2%;
 }
 
 .item-radio, .item-content {
@@ -58,7 +64,6 @@ legend {
   left: 0px;
 }
 
-
 .correctAnswer, .correctAnswerFinal {
   background-color: $green;
 }
@@ -87,6 +92,11 @@ legend {
 .day-range {
     text-decoration: underline;
 }
+
+.statscontent br {
+  display: none;
+}
+
 
 /** Archive Layout **/
 #viewarchive .header .col {

@@ -1,19 +1,31 @@
 <ion-view>
-    <ion-nav-title>Score & Statistics</ion-nav-title>
+    <!-- Override default back button functionality -->
+    <ion-nav-bar class="bar-content">
+        <ion-nav-back-button ng-click="gotoindex()"></ion-nav-back-button>
+        <ion-nav-buttons side="right">
+            <button ng-click="$ionicGoBack(-101)" class="button button-icon icon ion-home"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-nav-title>{{ 'mma.mod_dps.scorestats' | translate }}</ion-nav-title>
+
     <ion-content padding=true>
-        <div ng-if="loaded">
-            <!-- Add/Remove favorites -->
+        <mm-loading hide-until="loaded" padding-loading-top="paddingLoadingTop">
+            <div ng-if="loaded">
+                <!-- Add/Remove favorites -->
+                <div mma-mod-dps-favorite="markFavorite(favorite)" favorite="result.question_flagged"></div>
 
-            <!-- Display question content here -->
-            <mm-format-text class="mm-content-with-float" watch=true>{{question}}</mm-format-text>
+                <!-- Display question content here -->
+                <mm-format-text class="mm-content-with-float statscontent" watch="true">{{question}}</mm-format-text>
 
-            <!-- Display date series here for mobile only -->
-            <div ng-repeat="week in weekdays" class="date-diff" ng-click="getNextData(week.week_first_day)">
-                <mm-format-text class="day-range" watch=true>{{week.week}}</mm-format-text> | 
+                <!-- Display date series here for mobile only -->
+                <div ng-repeat="week in weekdays" class="date-diff" ng-click="getNextData(week.week_first_day, true)">
+                    <mm-format-text class="day-range" watch=true>{{week.week}}</mm-format-text> | 
+                </div>
+
+                <!-- Display graph content here -->
+                <mma-mod-dps-chart class="dps_chart" chart-data="data" chart-ticks="ticks"></mma-mod-dps-chart>
             </div>
-
-            <!-- Display graph content here -->
-            <mma-mod-dps-chart class="dps_chart" chart-data="data" chart-ticks="ticks"></mma-mod-dps-chart>
-        </div>
+        </mm-loading>
     </ion-content>
 </ion-view>

@@ -25,7 +25,7 @@ angular.module('mm.addons.mod_dps')
                         }, grid: { hoverable: true, clickable: true },
                         xaxis: {
                             mode: "time",
-                            ticks: scope[attrs.chartTicks],
+                            ticks: scope[attrs.chartTicks]
                         },
                         yaxis: {
                             min: 0,
