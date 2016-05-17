@@ -24,7 +24,7 @@
                     <legend>{{ 'mma.mod_dps.question' | translate }}</legend>
                     <div ng-if="attempt.questions">
                         <div ng-repeat="que in attempt.questions">
-                            <mm-format-text watch=true>{{que.questiontext}}</mm-format-text>
+                            <mm-format-text class="questiontext" watch=true>{{que.questiontext}}</mm-format-text>
                             <div ng-repeat="ans in que.answers">
                                 <ion-radio ng-model="att.choice" ng-value="ans.value">
                                     <mm-format-text watch=true> {{ans.answertext}} </mm-format-text>

@@ -4,19 +4,21 @@
         <div ng-if="!attempt.success">
             <mma-mod-dps-status status="attempt.message" courseid="courseid" sectionid="sectionid" module="module" watch="true">
         </div>
-        <div ng-if="attempt.success">
+        <div ng-if="attempt.success" id="mma_mpd_dps_attempt_form">
             <fieldset>
                 <legend>{{ 'mma.mod_dps.question' | translate }}</legend>
                 <div ng-if="attempt.questions">
                     <div ng-repeat="que in attempt.questions">
-                        <mm-format-text>{{que.questiontext}}</mm-format-text>
+                        <mm-format-text class="questiontext" class="mm-content-with-float">{{que.questiontext}}</mm-format-text>
                         <div ng-repeat="ans in que.answers">
                             <ion-radio ng-disabled=true ng-model="att.choice" ng-value="ans.value"><mm-format-text>{{ans.answertext}}</mm-format-text></ion-radio>
                         </div>
                     </div>
                 </div>
             </fieldset>
-            <a ui-sref="site.mm_course({courseid: courseid})" class="button button-block">{{ 'mma.mod_dps.continue' | translate }}</a>
+            <div class="btn-group">
+                <button ui-sref="site.mm_course({courseid: courseid})" class="button button-indepth">{{ 'mma.mod_dps.continue' | translate }}</button>
+            </div>
         </div>
     </ion-content>
 </ion-view>

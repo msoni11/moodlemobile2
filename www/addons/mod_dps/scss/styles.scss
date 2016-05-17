@@ -35,8 +35,23 @@ legend {
   white-space: normal;
 }
 
+/** Question **/
 #mma_mpd_dps_attempt_form {
   color: $lightdark;
+}
+
+#mma_mpd_dps_attempt_form .questiontext {
+  display: block;
+  margin: 15px 0;
+}
+
+#mma_mpd_dps_attempt_form fieldset {
+  background: #fafafa;
+}
+
+#mma_mpd_dps_attempt_form .item-radio .radio-icon {
+  padding: 9px;
+  color: #E08625;
 }
 
 /** Chart styles **/
