@@ -6,8 +6,8 @@
       <mm-loading hide-until="sectionLoaded" loading-padding-top="loadingPaddingTop">
         <div id="viewarchive">
           <div class="row header">
-            <div class="col">Question</div>
-            <div class="col col-20">Day shown</div>
+            <div class="col">{{ 'mma.mod_dps.question' | translate }}</div>
+            <div class="col col-20">{{ 'mma.mod_dps.dayshown' | translate }}</div>
           </div>
           <div class="row" ng-repeat="question in result.question_data">
             <div class="col" ng-click="showDetails(question.question_id)" ng-class="{'strong': question.question_flagged}"><mm-format-text clean="true" shorten="15%">{{question.question_text}}</mm-format-text></div>

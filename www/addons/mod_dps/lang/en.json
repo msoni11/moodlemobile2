@@ -23,5 +23,6 @@
     "markfavorite": "Add to favorites",
     "removefavorite": "Remove from favorites",
     "returntoarchive": "Return to Archive",
-    "scorestats": "Score & Statistics"
+    "scorestats": "Scores & Statistics",
+    "dayshown": "Day shown"
 }
