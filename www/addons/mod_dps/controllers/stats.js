@@ -21,11 +21,13 @@ angular.module('mm.addons.mod_dps')
                 $scope.ticks = result.chartdata.ticktitles;
                 $scope.question = result.question;
                 $scope.weekdays = result.chartdata.datesplits;
+                $scope.initday = result.chartdata.initial_day;
             }
         })
     }
 
     $scope.getNextData = function(dayFrom, refresh) {
+        if (dayFrom == $scope.initday) return;
         $scope.dayFrom = dayFrom;
         return $mmaModDps.getStats(module.id, dayFrom, refresh).then(function(result){
             $scope.loaded = false;
@@ -33,6 +35,7 @@ angular.module('mm.addons.mod_dps')
                 $scope.loaded = true;
                 $scope.data = formatData(result.chartdata.misseddata);
                 $scope.ticks = result.chartdata.ticktitles;
+                $scope.initday = result.chartdata.initial_day;
             }
         })
     }
