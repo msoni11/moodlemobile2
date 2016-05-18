@@ -44,10 +44,7 @@ angular.module('mm.addons.mod_dps')
             preSets.getFromCache = false;
         }
 
-        return $mmSite.read('mod_dps_get_status', params, preSets).then(function(result) {
-            statuses = result;
-            return statuses;
-        });
+        return $mmSite.read('mod_dps_get_status', params, preSets);
     }
 
     /**
@@ -58,12 +55,10 @@ angular.module('mm.addons.mod_dps')
      * @param {Number} cmId Course Module ID
      */
     self.enrolUser = function(cmId) {
-        return $mmSite.read('mod_dps_create_user_enrol', {
+        var params = {
             'cmid': cmId
-        }).then(function(result) {
-            //return enrollment status
-            return result;
-        });
+        }
+        return $mmSite.read('mod_dps_create_user_enrol', params);
     }
 
     /**
@@ -74,12 +69,10 @@ angular.module('mm.addons.mod_dps')
      * @param {Number} cmId Course Module ID
      */
     self.confirmDaily = function(cmId) {
-        return $mmSite.read('mod_dps_create_daily_confirm', {
+        var params = {
             'cmid': cmId
-        }).then(function(result) {
-            //return confirmation status result.
-            return result;
-        });
+        }
+        return $mmSite.read('mod_dps_create_daily_confirm', params);
     }
 
     /**
@@ -99,10 +92,7 @@ angular.module('mm.addons.mod_dps')
         if (refresh) {
             preSets.getFromCache = false;
         }
-        return $mmSite.read('mod_dps_get_daily_question', params, preSets).then(function(result) {
-            //return daily question of the day
-            return result;
-        });
+        return $mmSite.read('mod_dps_get_daily_question', params, preSets);
      }
 
     /**
@@ -110,7 +100,7 @@ angular.module('mm.addons.mod_dps')
      *
      * @module mm.addons.mod_dps
      * @name $mmaModDps#startAttempt
-     * @param {Number} cmID Course Module ID
+     * @param {Number} cmId Course Module ID
      * @param {Boolean} [refresh] True when we should not get the value from the cache.
      */
     self.startAttempt = function(cmId, refresh) {
@@ -130,6 +120,10 @@ angular.module('mm.addons.mod_dps')
      *
      * @module mm.addons.mod_dps
      * @name $mmadModDps#processAttempt
+     * @param {Number} cmId Course Module ID
+     * @param {Number} qId question ID
+     * @param {Boolean} timeup true when attempt is auto submitted, false if submitted by user.
+     * @param {Number} andId answer ID submitted by user.
      */
      self.processAttempt = function(cmId, qId, timeup, ansId) {
         var params = {
@@ -148,6 +142,11 @@ angular.module('mm.addons.mod_dps')
     /**
      * This method can be used to get user stats for daily
      *
+     * @module mm.addons.mod_dps
+     * @name $mmadModDps#getStats
+     * @param {Number} cmId Course Module ID
+     * @param {Number} dayFrom start day from when data should fetch from.
+     * @param {Boolean} [refresh] True when we should not get the value from the cache.
      */
     self.getStats = function(cmId, dayFrom, refresh) {
         var params = {
@@ -166,14 +165,16 @@ angular.module('mm.addons.mod_dps')
             preSets.getFromCache = false;
         }
 
-        return $mmSite.read(ws_method, params, preSets).then(function(result){
-            return result;
-        });
-
+        return $mmSite.read(ws_method, params, preSets);
     }
 
     /**
      * This method can be used to set cycle bookmark.
+     *
+     * @module mm.addons.mod_dps
+     * @name $mmadModDps#setBookmark
+     * @param {Number} cmId Course Module ID
+     * @param {Boolean} bookmarkIt True/False when you add/remove bookmark. 
      */
     self.setBookmark = function(cmId, bookmarkIt) {
         var params = {
@@ -181,9 +182,7 @@ angular.module('mm.addons.mod_dps')
             bookmarkit: bookmarkIt ? 1 : 0
         }
 
-        return $mmSite.read('mod_dps_create_bookmark', params).then(function(result) {
-            return result;
-        });
+        return $mmSite.read('mod_dps_create_bookmark', params);
     }
 
     /**
