@@ -1,7 +1,7 @@
 {
     "app_id" : "com.indepth.indepthmobile",
     "versioncode" : "2011",
-    "versionname" : "1.0.1",
+    "versionname" : "1.0.2",
     "cache_expiration_time" : 30000,
     "default_lang" : "en",
     "languages": {"en": "English", "fa": "فارسی", "fr" : "Français", "it": "Italiano"},
