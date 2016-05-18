@@ -11,8 +11,8 @@
 
 .list .item.item-accordion {
   line-height: 38px;
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
   transition: 0.09s all linear;
 }
 .list .item.item-accordion.ng-hide {
@@ -50,7 +50,10 @@
   width: 50%;
   display: inline-block;
   font-weight: bold;
-  vertical-align: top;
+  vertical-align: middle;
+  white-space: normal;
+  line-height: normal;
+  padding-right: 10px;
 }
 
 .dps_info {

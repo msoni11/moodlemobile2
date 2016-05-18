@@ -58,11 +58,11 @@
                       </ion-item>
 
                       <ion-item class="item-accordion" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-show="isModuleShown(module)">
-                        <span class="dps_title">{{ 'mma.mod_dps.dailystart' | translate}}</span><span class="dps_info">{{module.dps_start}}</span>
+                        <span class="dps_title">{{ 'mma.mod_dps.dailystart' | translate}}</span><span class="dps_info"><mm-format-text watch="true">{{module.dps_start}}</mm-format-text></span>
                       </ion-item>
 
                       <ion-item class="item-accordion" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-show="isModuleShown(module)">
-                        <span class="dps_title">{{ 'mma.mod_dps.dailyend' | translate}}</span><span class="dps_info">{{module.dps_end}}</span>
+                        <span class="dps_title">{{ 'mma.mod_dps.dailyend' | translate}}</span><span class="dps_info"><mm-format-text watch="true">{{module.dps_end}}</mm-format-text></span>
                       </ion-item>
 
                       <ion-item class="item-accordion" ng-class-odd="'item-stable-odd'" ng-class-even="'item-stable-even'" ng-if="module.show_bookmark" ng-show="isModuleShown(module)" ng-controller="module._controller">
