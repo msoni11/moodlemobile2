@@ -26,8 +26,8 @@ angular.module('mm.addons.mod_dps')
         })
     }
 
-    $scope.getNextData = function(dayFrom, refresh) {
-        if (dayFrom == $scope.initday) return;
+    $scope.getNextData = function(dayFrom, refresh, forced) {
+        if (undefined == forced && dayFrom == $scope.initday) return;
         $scope.dayFrom = dayFrom;
         return $mmaModDps.getStats(module.id, dayFrom, refresh).then(function(result){
             $scope.loaded = false;
@@ -40,8 +40,8 @@ angular.module('mm.addons.mod_dps')
         })
     }
 
-    function getNextData(dayFrom, refresh) {
-        return $scope.getNextData(dayFrom, refresh);
+    function getNextData(dayFrom, refresh, forced) {
+        return $scope.getNextData(dayFrom, refresh, forced);
     }
 
     /** Handle multilang labels **/
@@ -63,7 +63,7 @@ angular.module('mm.addons.mod_dps')
         return $mmaModDps.markFavorite(qId, module.id, favorite, true).then(function(result){
             // Change the flagged value on success.
             $scope.result.question_flagged =  favorite;
-            getNextData($scope.dayFrom, true);
+            getNextData($scope.dayFrom, true, true);
         })
     }
 
